@@ -8,5 +8,5 @@ public interface IConnectable
     public string host { get; set; }
 
     Socket socket { get; set; }
-    public void CreateSocket();
+    public void createSocket();
 }

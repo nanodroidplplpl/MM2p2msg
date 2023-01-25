@@ -1,9 +1,20 @@
-﻿namespace MM2p2msg;
+﻿using System.Collections;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
-// Zrobic zbieranie informacji o kontaktach (nick, host_ip, host_port) z pliku json
+namespace MM2p2msg;
+
+[DataContract]
 public class Contacts
 {
+    [DataMember]
     public string name { get; set; }
+    [DataMember]
     public string ip { get; set; }
-    public string port { get; set; }
+    [DataMember]
+    public int port { get; set; }
 }
+
+//ja: lkashdfkljasdf : 13:45 
+//ty: fdaslfjkaslkdfj: ..
+//ja: aflkadsjfklas : ..

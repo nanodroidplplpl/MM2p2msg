@@ -8,7 +8,7 @@ public class Server : IConnectable
     public string host { get; set; }
     public Socket socket { get; set; }
     
-    public void CreateSocket()
+    public void createSocket()
     {
         throw new NotImplementedException();
     }

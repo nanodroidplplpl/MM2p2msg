@@ -18,7 +18,7 @@ public class Client : IConnectable
         port = port;
     }
 
-    public void CreateSocket()
+    public void createSocket()
     {
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -28,12 +28,12 @@ public class Client : IConnectable
     }
 
     // Zrobic zbieranie informacji o kontaktach (nick, host_ip, host_port) z pliku json, async!!!
-    public void GetFriendlyHosts()
+    public void getFriendlyHosts()
     {
-
+        
     }
 
-    public void TryConnect()
+    public void tryConnect()
     {
         
     }
