@@ -24,7 +24,7 @@ public class User
         }
     }
 
-    // Mozna uzyc np getContactsFromJson(line -> funkcja(line)) funkcja zapisuje dane do tablicy
+    // Mozna uzyc np getCdontactsFromJson(line -> funkcja(line)) funkcja zapisuje dane do tablicy
     public void GetContactsFromJson(Action<Contacts> newContact)
     {
         string file;
