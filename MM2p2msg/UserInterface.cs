@@ -22,7 +22,12 @@ public class UserInterface
     
     public void PrintContacts(Contacts c)
     {
-        SendGui(c.name+" "+c.ip+" "+c.port.ToString());
+        string color = null;
+        if (c.Active)
+            color = "[online] ";
+        else
+            color = "[offline] ";
+        SendGui(color+c.Name+" "+c.Ip+" "+c.Port.ToString());
         Update();
     }
 

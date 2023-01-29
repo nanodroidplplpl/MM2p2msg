@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <Compile Remove="Connection.cs" />
+      <Compile Remove="ConnectionClientUI.cs" />
     </ItemGroup>
 
     <ItemGroup>

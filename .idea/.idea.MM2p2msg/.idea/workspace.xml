@@ -4,10 +4,17 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="Added support for a JSON file that saves and reads the contact list.">
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="UI">
+      <change afterPath="$PROJECT_DIR$/MM2p2msg/ConnectionClientUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MM2p2msg/Monitor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Client.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Contacts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Contacts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/IConnectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/IConnectable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/MM2p2msg.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/MM2p2msg.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" afterDir="false" />
     </list>
@@ -18,7 +25,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/18c7de6a7132663af691f7f0e1c8e3c5f672c6a69b7844a1cd0d8bcf94d87e9/ThrowHelper.Serialization.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/67cc3911dd203a288c1fa955bec74e281d938be3b988330c2aac7c6ce63340/DataMemberAttribute.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -30,23 +37,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.general",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\mkawk\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\mkawk\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\mkawk\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\mkawk\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\mkawk\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\mkawk\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="MM2p2msg" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -75,7 +82,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674513359790</updated>
-      <workItem from="1674513361738" duration="40111000" />
+      <workItem from="1674513361738" duration="45784000" />
+      <workItem from="1674833354581" duration="49437000" />
+      <workItem from="1675005602407" duration="1670000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1674567093708</created>
@@ -91,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674644673323</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="UI">
+      <created>1674688442697</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1674688442697</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,6 +119,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Init commit" />
     <MESSAGE value="Added support for a JSON file that saves and reads the contact list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added support for a JSON file that saves and reads the contact list." />
+    <MESSAGE value="UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI" />
   </component>
 </project>

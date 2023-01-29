@@ -1,12 +1,10 @@
-﻿using System.Net.Sockets;
+﻿using System.Net;
+using System.Net.Sockets;
 
 namespace MM2p2msg;
 
-public interface IConnectable
+public interface IConnectable : IDisposable
 {
-    public int port { get; set; }
-    public string host { get; set; }
-
-    Socket socket { get; set; }
-    public void createSocket();
+    Socket Socket { get; set; }
+    public Socket CreateSocket();
 }
