@@ -4,7 +4,7 @@ namespace MM2p2msg;
 
 public class GuiMeneger
 {
-    public GuiMeneger(string name, AutoResetEvent updateGui)
+    public GuiMeneger(string name, AutoResetEvent updateGui, string usrName, User kUser)
     {
         cardSelection = 0;
         _guis = new List<UserInterface>();
@@ -14,7 +14,11 @@ public class GuiMeneger
         _guis.Add(new UserInterface(new Contacts("Menu", "helo", 124, false, 111, null, null)));
         _top.Add("Menu");
         UpdateGui = updateGui;
+        this.usrName = usrName;
+        this.kUser = kUser;
     }
+
+    private User kUser;
 
     private static readonly string[] SpecialKeys = {@"/changeTab", @"/newConf", @"/deleteConf", @"/addFriend", @"/deleteFriend"};
     
@@ -29,6 +33,8 @@ public class GuiMeneger
     public string Name;
 
     public AutoResetEvent UpdateGui;
+
+    public string usrName;
     
     public MonitorServerGui MonitorServerGui { get; set; }
     
@@ -81,8 +87,17 @@ public class GuiMeneger
         while (true)
         {
             UpdateGui.WaitOne();
-            _guis[cardSelection].Output = FindCorrectPerson((List<Contacts>)MonitorServerGui.GetMonitoredVar());
-            _guis[cardSelection].Update(_top, cardSelection);
+            if (cardSelection == 0)
+            {
+                Object friends = kUser.TryFriendlyContacts(
+                    result => 
+                        _guis[0].PrintContacts(result, _top, cardSelection));
+            }
+            else
+            {
+                _guis[cardSelection].Output = FindCorrectPerson((List<Contacts>)MonitorServerGui.GetMonitoredVar());
+                _guis[cardSelection].Update(_top, cardSelection);
+            }
             UpdateGui.Reset();
             //await Task.Delay(0);
         }
@@ -159,7 +174,7 @@ public class GuiMeneger
                     if (friend.Name == _guis[cardSelection].Name && friend.Ip == _guis[cardSelection].ip)
                     {
                         friend.Conf.Add(msg);
-                        Client client = new Client(friend);
+                        Client client = new Client(friend, usrName);
                         client.SendMessage(msg);
                     }
                 }

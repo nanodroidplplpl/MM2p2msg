@@ -9,12 +9,14 @@ public class Client : IConnectable
     private Contacts Contact { get; set; }
     public Socket Socket { get; set; } = null!;
     public int TempPort = 5050;
+    public string usrName;
 
     // Utworzyc tablice na znajome hosty
     
-    public Client(Contacts contact)
+    public Client(Contacts contact, string usrName)
     {
         Contact = contact;
+        this.usrName = usrName;
     }
 
     public Socket CreateSocket()
@@ -48,7 +50,7 @@ public class Client : IConnectable
             return Contact;
         }
         Contact.Active = true;
-        byte[] buffer = Encoding.ASCII.GetBytes(Contact.Name+":AscConnection");
+        byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection");
         SocketAsyncEventArgs args = new SocketAsyncEventArgs();
         args.RemoteEndPoint = endPoint;
         args.SetBuffer(buffer, 0, buffer.Length);

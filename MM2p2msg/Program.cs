@@ -4,15 +4,17 @@ namespace MM2p2msg;
 internal abstract class P2Pmsg
 {
     static AutoResetEvent _updateGui = new AutoResetEvent(false);
+    static string UserName = "maciekP";
     static async Task Main()
     {
-        User kUser = new User();
-        GuiMeneger guiMeneger = new GuiMeneger("Maciej", _updateGui);
+        User kUser = new User(UserName);
+        GuiMeneger guiMeneger = new GuiMeneger("Maciej", _updateGui, UserName, kUser);
         //UserInterface gui = new UserInterface("Maciej");
         //User.SaveContactToJson("maciek1", "192.168.1.1", 5005);
         //User.SaveContactToJson("mati2", "192.168.1.2", 5005);
         //User.SaveContactToJson("maciekPC", "127.0.0.1", 5001);
         //User.SaveContactToJson("maciekP", "127.0.0.1", 5000);
+        //User.SaveContactToJson("Mati", "26.101.171.76", 5000);
         // Try contact to friends
         List<Contacts>? friends = kUser.GetContactsFromJson();
         friends = await kUser.TryFriendlyContacts(
