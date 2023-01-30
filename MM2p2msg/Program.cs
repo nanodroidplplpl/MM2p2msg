@@ -3,43 +3,48 @@ namespace MM2p2msg;
 
 internal abstract class P2Pmsg
 {
+    static AutoResetEvent _updateGui = new AutoResetEvent(false);
     static async Task Main()
     {
         User kUser = new User();
-        UserInterface gui = new UserInterface("Maciej");
+        GuiMeneger guiMeneger = new GuiMeneger("Maciej", _updateGui);
+        //UserInterface gui = new UserInterface("Maciej");
         //User.SaveContactToJson("maciek1", "192.168.1.1", 5005);
         //User.SaveContactToJson("mati2", "192.168.1.2", 5005);
         //User.SaveContactToJson("maciekPC", "127.0.0.1", 5001);
-        User.SaveContactToJson("maciekP", "127.0.0.1", 5001);
+        //User.SaveContactToJson("maciekP", "127.0.0.1", 5000);
         // Try contact to friends
         List<Contacts>? friends = kUser.GetContactsFromJson();
-        List<Task> servers = new List<Task>();
-        if (friends != null)
-            foreach (var friend in friends)
-            {
-                kUser.CtsS?.Add(new CancellationTokenSource());
-                servers.Add(kUser.RunServer());
-            }
-
-        friends = await kUser.TryFriendlyContacts(result => gui.PrintContacts(result));
-        string? msg = gui.GetUserInput();
-        msg = gui.GetUserInput();
-        msg = gui.GetUserInput();
-        msg = gui.GetUserInput();
-        msg = gui.GetUserInput();
+        friends = await kUser.TryFriendlyContacts(
+            result => 
+                guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
         Console.WriteLine("Dupa 1");
-        foreach (var server in servers)
-        {
-            if (server.IsCanceled)
-            {
-                Console.WriteLine("Skasowany dupa");
-            }
-            else
-            {
-                Console.WriteLine("działa");
-            }
-        }
-        await Task.WhenAll(servers);
+        MonitorServerGui monitorServerGui = new MonitorServerGui(friends); 
+        Console.WriteLine("Dupa 2");
+        Server mainServer = new Server(5000, monitorServerGui, _updateGui);
+        Console.WriteLine("Dupa 3");
+        guiMeneger.MonitorServerGui = monitorServerGui;
+        Console.WriteLine("Dupa 4");
+        Task mainServerTask = mainServer.MainServerTask();
+        //Task mainServerTask = Task.Run(() => { mainServer.MainServerTask(); });
+        Console.WriteLine("Dupa 5");
+        
+        // friends = await kUser.TryFriendlyContacts(
+        //     result => 
+        //         guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
+        //Task printUi = guiMeneger.PrintUi();
+        // Task printUi = guiMeneger.PrintUi();
+        // MonitorServerGui monitorServerGui = new MonitorServerGui(friends);
+        // Server mainServer = new Server(5000, monitorServerGui, _updateGui);
+        // guiMeneger.MonitorServerGui = monitorServerGui;
+        // Task mainServerTask = mainServer.MainServerTask();
+        Console.WriteLine("Dupa 6");
+        // Task guiMenegerTask = guiMeneger.GetUserInput();
+        Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(); });
+        Console.WriteLine("Dupa 7");
+        // Task printUi = guiMeneger.PrintUi();
+        Task printUi = Task.Run(() => { guiMeneger.PrintUi(); });
+        await Task.WhenAll(mainServerTask, printUi, guiMenegerTask);
     }
 }
 
