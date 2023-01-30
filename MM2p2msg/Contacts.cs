@@ -15,6 +15,7 @@ public class Contacts
         LocalPort = LocalPort;
         C = c;
         S = s;
+        Conf = new List<string>();
     }
 
     [DataMember]
@@ -31,6 +32,8 @@ public class Contacts
     public Client C { get; set; }
     
     public Server S { get; set; }
+
+    public List<string> Conf;
 }
 
 //ja: lkashdfkljasdf : 13:45 

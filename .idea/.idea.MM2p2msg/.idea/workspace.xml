@@ -4,28 +4,28 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="UI">
-      <change afterPath="$PROJECT_DIR$/MM2p2msg/ConnectionClientUI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MM2p2msg/Monitor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Client.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/Contacts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Contacts.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/IConnectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/IConnectable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/MM2p2msg.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/MM2p2msg.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/18c7de6a7132663af691f7f0e1c8e3c5f672c6a69b7844a1cd0d8bcf94d87e9/ThrowHelper.Serialization.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/67cc3911dd203a288c1fa955bec74e281d938be3b988330c2aac7c6ce63340/DataMemberAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -85,6 +85,8 @@
       <workItem from="1674513361738" duration="45784000" />
       <workItem from="1674833354581" duration="49437000" />
       <workItem from="1675005602407" duration="1670000" />
+      <workItem from="1675007817859" duration="44409000" />
+      <workItem from="1675111810104" duration="1331000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1674567093708</created>
@@ -107,7 +109,21 @@
       <option name="project" value="LOCAL" />
       <updated>1674688442697</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="będzie zmiana">
+      <created>1675007996307</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675007996307</updated>
+    </task>
+    <task id="LOCAL-00005" summary="działa, chyba">
+      <created>1675111219634</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675111219634</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +136,12 @@
     <MESSAGE value="Init commit" />
     <MESSAGE value="Added support for a JSON file that saves and reads the contact list." />
     <MESSAGE value="UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI" />
+    <MESSAGE value="będzie zmiana" />
+    <MESSAGE value="działa, chyba" />
+    <option name="LAST_COMMIT_MESSAGE" value="działa, chyba" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

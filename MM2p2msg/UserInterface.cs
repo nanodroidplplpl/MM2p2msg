@@ -8,19 +8,53 @@ public class UserInterface
     public int ListMaxSize { get; set; }
     public List<string> Output { get; set; }
     
-    public UserInterface(string name)
+    public string ip { get; set; }
+
+    public string Name;
+
+    public UserInterface(Contacts friend)
     {
-        Output = new List<string>();
+        //Output = new List<string>();
+        Output = friend.Conf;
+        ip = friend.Ip;
         Console.Clear();
-        Console.WriteLine("Hello "+name);
+        //Console.WriteLine("Hello "+name);
         Output.Add(".NET chat, Nowy Elegancki Terminal NET");
-        Output.Add("Hello Maciej");
+        Output.Add("Konwersacja: ");
+        Name = friend.Name;
         ListSize = 2;
         ListMaxSize = 7;
-        Update();
+        Update(null, null);
     }
-    
-    public void PrintContacts(Contacts c)
+
+    public void PrintTop(List<string>? top, int? cardSelection)
+    {
+        int iter = 0;
+        if (top != null)
+            foreach (var t in top)
+            {
+                if (iter == cardSelection)
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.Write("["+t+"] ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                }
+                else
+                {
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write("["+t+"] ");
+                    }
+                }
+
+                iter++;
+            }
+        Console.WriteLine();
+    }
+    public void PrintContacts(Contacts c, List<string> top, int cardSelection)
     {
         string color = null;
         if (c.Active)
@@ -28,7 +62,7 @@ public class UserInterface
         else
             color = "[offline] ";
         SendGui(color+c.Name+" "+c.Ip+" "+c.Port.ToString());
-        Update();
+        Update(top, cardSelection);
     }
 
     public void SendGui(string msg)
@@ -36,58 +70,42 @@ public class UserInterface
         string temp;
         Console.ForegroundColor = ConsoleColor.White;
         Console.BackgroundColor = ConsoleColor.Black;
-        if (Output.Count < ListMaxSize)
-            Output.Add(msg);
-        else
-        {
-            for (int i = 2; i < Output.Count-1; i++)
-            {
-                Output[i] = Output[i + 1];
-            }
-
-            Output[Output.Count - 1] = msg;
-        }
+        // if (Output.Count < ListMaxSize)
+        //     Output.Add(msg);
+        // else
+        // {
+        //     for (int i = 2; i < Output.Count-1; i++)
+        //     {
+        //         Output[i] = Output[i + 1];
+        //     }
+        //
+        //     Output[Output.Count - 1] = msg;
+        // }
+        Output.Add(msg);
     }
 
-    public void Update()
+    public void Update(List<string>? top, int? cardSelection)
     {
         Console.Clear();
         Console.CursorTop = 0;
         Console.CursorLeft = 0;
-        foreach (var line in Output)
+        PrintTop(top, cardSelection);
+        // foreach (var line in Output)
+        // {
+        //     Console.WriteLine(line);
+        // }
+        if (Output.Count < 6)
         {
-            Console.WriteLine(line);
-        }
-    }
-
-    public string? GetUserInput()
-    {
-        Console.CursorTop += 5;
-        Console.CursorLeft = 0;
-        Console.ForegroundColor = ConsoleColor.Black;
-        Console.BackgroundColor = ConsoleColor.White;
-        Console.Write("->");
-        for (int i = Console.CursorLeft; i < 50; i++)
-        {
-            Console.CursorLeft = i;
-            Console.Write(" ");
-        }
-        Console.CursorLeft = 0;
-        Console.CursorLeft += 5;
-        string? msg = Console.ReadLine();
-        Console.CursorTop -= 1;
-        if (msg != null)
-            for (int i = 0; i < msg.Length; i++)
+            foreach (var line in Output)
             {
-                Console.CursorLeft = i;
-                Console.Write(" ");
+                Console.WriteLine(line);
             }
 
-        Console.CursorLeft = 0;
-        SendGui(msg);
-        Update();
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.BackgroundColor = ConsoleColor.Black;
-        return msg;
+            return;
+        }
+        for (int i = Output.Count - 6; i < Output.Count; i++)
+        {
+            Console.WriteLine(Output[i]);
+        }
     }
 }

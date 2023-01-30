@@ -10,12 +10,10 @@ public class User : IDisposable
     private int _localServerPort = 5000;
     private List<Contacts>? _obj;
     public List<CancellationTokenSource> CtsS = null;
-    public List<Server> Servers;
 
     public User()
     {
         CtsS = new List<CancellationTokenSource>();
-        Servers = new List<Server>();
     }
     
     public static void SaveContactToJson(string nick, string ip, int port)
@@ -60,9 +58,7 @@ public class User : IDisposable
             {
                 Console.WriteLine(o.Ip);
                 _clientPort++;
-                o.C = new Client(o, CtsS?[iter], _localServerPort){TempPort = _clientPort};
-                o.S = Servers[iter];
-                o.C.ServerPort = o.S.Port;
+                o.C = new Client(o){TempPort = _clientPort};
                 tryes.Add(o.C.TryConnect());
                 _localServerPort++;
                 iter++;
@@ -80,10 +76,11 @@ public class User : IDisposable
 
     public async Task RunServer()
     {
-        Server s = new Server(_localServerPort);
-        Servers.Add(s);
-        _localServerPort++;
-        await s.GetMsg(CtsS[_localServerPort-5001].Token);
+        // Server s = new Server(_localServerPort);
+        // Servers.Add(s);
+        // _localServerPort++;
+        // await s.GetMsg(CtsS[_localServerPort-5001].Token);
+        
     }
 
     public void Dispose()

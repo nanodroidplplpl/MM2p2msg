@@ -9,17 +9,12 @@ public class Client : IConnectable
     private Contacts Contact { get; set; }
     public Socket Socket { get; set; } = null!;
     public int TempPort = 5050;
-    public int ServerPort { get; set; }
-    
-    public CancellationTokenSource Cts { get; set; }
 
     // Utworzyc tablice na znajome hosty
     
-    public Client(Contacts contact, CancellationTokenSource cts, int serverPort)
+    public Client(Contacts contact)
     {
         Contact = contact;
-        this.Cts = cts;
-        this.ServerPort = serverPort;
     }
 
     public Socket CreateSocket()
@@ -50,11 +45,10 @@ public class Client : IConnectable
         catch (Exception)
         {
             Contact.Active = false;
-            Cts.Cancel();
             return Contact;
         }
         Contact.Active = true;
-        byte[] buffer = Encoding.ASCII.GetBytes(ServerPort.ToString());
+        byte[] buffer = Encoding.ASCII.GetBytes(Contact.Name+":AscConnection");
         SocketAsyncEventArgs args = new SocketAsyncEventArgs();
         args.RemoteEndPoint = endPoint;
         args.SetBuffer(buffer, 0, buffer.Length);
@@ -62,18 +56,14 @@ public class Client : IConnectable
         return Contact;
     }
 
-    public async Task SendMessage(string msg)
+    public void SendMessage(string msg)
     {
         byte[] msgSerialized = Encoding.ASCII.GetBytes(msg);
-        try
-        {
-            Socket.Send(msgSerialized);
-        }
-        catch (Exception)
-        {
-            Cts.Cancel();
-            throw;
-        }
+        Socket = CreateSocket();
+        IPAddress ip = IPAddress.Parse(Contact.Ip);
+        IPEndPoint endPoint = new IPEndPoint(ip, Contact.Port);
+        Socket.Connect(endPoint);
+        Socket.Send(msgSerialized);
     }
 
     public void Dispose()
