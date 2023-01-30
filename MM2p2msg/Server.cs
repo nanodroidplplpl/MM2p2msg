@@ -58,10 +58,10 @@ public class Server : IConnectable
                 {
                     mVar.Conf.Add(mVar.Name+msg);
                     //Debug.WriteLine("Dodaje dla: "+mVar.Name);
-                    using (StreamWriter sw = File.CreateText(@"dupa_kurwa_dupa_jebana1.txt"))
-                    {
-                        sw.WriteLine("Hello World");
-                    }
+                    // using (StreamWriter sw = File.CreateText(@"dupa_kurwa_dupa_jebana1.txt"))
+                    // {
+                    //     sw.WriteLine("Hello World");
+                    // }
                 }
             }
         }
