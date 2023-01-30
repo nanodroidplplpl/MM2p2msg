@@ -49,7 +49,7 @@ public class Server : IConnectable
         string Saddress = address.ToString();
         Match match = Regex.Match(msg, @":AscConnection");
         List<Contacts> monitoredVar = (List<Contacts>)ServerGuiConnect.GetMonitoredVar();
-        Console.WriteLine("Dodaje dla: asdlkfhjalsdkfjhasdlkfghaskdfhsdalkujdfhsdalkfhd");
+        Console.WriteLine("Dodaje dla: "+msg);
         if (!match.Success)
         {
             foreach (var mVar in monitoredVar)
@@ -87,7 +87,7 @@ public class Server : IConnectable
     public async Task MainServerTask()
     {
         IPHostEntry host = await Dns.GetHostEntryAsync(Dns.GetHostName());
-        IPAddress localAddress = IPAddress.Parse("127.0.0.1");//host.AddressList[0];
+        IPAddress localAddress = IPAddress.Parse("26.129.155.17");//host.AddressList[0];
 
         var listener = new TcpListener(localAddress, 5000);
         listener.Start();
