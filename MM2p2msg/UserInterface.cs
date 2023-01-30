@@ -57,20 +57,24 @@ public class UserInterface
         Console.WriteLine();
     }
 
-    public bool CheckForClones(Contacts c)
+    public void CheckForClones(Contacts c)
     {
         foreach (var outer in Output)
         {
             Match a = Regex.Match(outer, @"\[online\]\s+(.*)");
             Match b = Regex.Match(outer, @"\[offline\]\s+(.*)");
             
-            if (a.Groups[1].Value == c.Name+" "+c.Ip+" "+c.Port.ToString() || b.Groups[1].Value == c.Name+" "+c.Ip+" "+c.Port.ToString())
+            if (a.Groups[1].Value == c.Name+" "+c.Ip+" "+c.Port.ToString())
             {
-                return true;
+                Output.Remove("[online] "+c.Name+" "+c.Ip+" "+c.Port.ToString());
+                return;
+            }
+            else if (b.Groups[1].Value == c.Name + " " + c.Ip + " " + c.Port.ToString())
+            {
+                Output.Remove("[offline] "+c.Name+" "+c.Ip+" "+c.Port.ToString());
+                return;
             }
         }
-
-        return false;
     }
     
     public void PrintContacts(Contacts c, List<string> top, int cardSelection)
@@ -80,11 +84,9 @@ public class UserInterface
             color = "[online] ";
         else
             color = "[offline] ";
-        if (!CheckForClones(c))
-        {
-            SendGui(color+c.Name+" "+c.Ip+" "+c.Port.ToString());
-            Update(top, cardSelection);
-        }
+        CheckForClones(c);
+        SendGui(color+c.Name+" "+c.Ip+" "+c.Port.ToString());
+        Update(top, cardSelection);
     }
 
     public void SendGui(string msg)

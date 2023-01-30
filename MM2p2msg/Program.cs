@@ -8,7 +8,7 @@ internal abstract class P2Pmsg
     static async Task Main()
     {
         User kUser = new User(UserName);
-        GuiMeneger guiMeneger = new GuiMeneger("Maciej", _updateGui, UserName, kUser);
+        GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, UserName, kUser);
         //UserInterface gui = new UserInterface("Maciej");
         //User.SaveContactToJson("maciek1", "192.168.1.1", 5005);
         //User.SaveContactToJson("mati2", "192.168.1.2", 5005);

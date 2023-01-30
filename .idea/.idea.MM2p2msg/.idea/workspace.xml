@@ -4,8 +4,9 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="dodanie lepszej karty">
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="zmiana pomiędzy kartami działa dobrze">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +31,7 @@
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/UserInterface.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -135,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675118929684</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="zmiana pomiędzy kartami działa dobrze">
+      <created>1675120213928</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1675120213928</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +157,8 @@
     <MESSAGE value="Init commit" />
     <MESSAGE value="Added support for a JSON file that saves and reads the contact list." />
     <MESSAGE value="UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI" />
+    <MESSAGE value="zmiana pomiędzy kartami działa dobrze" />
+    <option name="LAST_COMMIT_MESSAGE" value="zmiana pomiędzy kartami działa dobrze" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
