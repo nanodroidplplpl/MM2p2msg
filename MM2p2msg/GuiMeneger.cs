@@ -22,6 +22,17 @@ public class GuiMeneger
     }
 
     private User kUser;
+    
+    public enum SpecialKey
+    {
+        ChangeTab,
+        NewConf,
+        DeleteConf,
+        AddFriend,
+        DeleteFriend,
+        Exit,
+        Wrong
+    }
 
     private static readonly string[] SpecialKeys = {@"/changeTab", @"/newConf",
         @"/deleteConf", @"/addFriend", @"/deleteFriend", @"/exit"};
@@ -60,6 +71,8 @@ public class GuiMeneger
                 return;
             }
         }
+
+        EnableInput.Set();
     }
 
     public void UpdateConf()
@@ -104,6 +117,7 @@ public class GuiMeneger
                 // Object friends = kUser.TryFriendlyContacts(
                 //     result => 
                 //         _guis[0].PrintContacts(result, _top, cardSelection));
+                Console.Clear();
                 List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
                 foreach (var friend in friends)
                 {
@@ -126,6 +140,7 @@ public class GuiMeneger
             }
             else
             {
+                Console.Clear();
                 _guis[cardSelection].Output = FindCorrectPerson((List<Contacts>)MonitorServerGui.GetMonitoredVar());
                 _guis[cardSelection].Update(_top, cardSelection);
             }
@@ -138,41 +153,34 @@ public class GuiMeneger
         Console.WriteLine("Koniec");
     }
 
-    public int FindSpecialKey(string msg)
+    public SpecialKey FindSpecialKey(string msg)
     {
         int iter = 0;
         foreach (string key in SpecialKeys)
         {
             Match match = Regex.Match(msg, key);
             if (match.Success)
-                return iter;
+                return (SpecialKey) iter;
             iter++;
         }
-        return -1;
+        return SpecialKey.Wrong;
     }
     public bool CheckForSpecialKeys(string msg, CancellationTokenSource endProgram)
     {
         switch (FindSpecialKey(msg))
         {
-            case 0:
+            case SpecialKey.ChangeTab:
                 cardSelection = (cardSelection + 1 > _top.Count - 1) ? 0 : cardSelection + 1;
                 //PrintUi();
                 UpdateGui.Set();
                 return true;
-                break;
-            case 1:
+            case SpecialKey.NewConf:
                 AddNewConf(msg);
                 return true;
-                break;
-            case 2:
+            case SpecialKey.DeleteConf:
                 DeleteConf();
                 return true;
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
+            case SpecialKey.Exit:
                 endProgram.Cancel(); 
                 List<Contacts> kontakty = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
                 kUser.SaveConf(kontakty);

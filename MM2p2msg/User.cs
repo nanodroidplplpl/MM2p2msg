@@ -13,6 +13,7 @@ public class User : IDisposable
     public List<CancellationTokenSource> CtsS = null;
     private string usrName;
 
+
     public User(string usrName)
     {
         CtsS = new List<CancellationTokenSource>();
@@ -23,17 +24,21 @@ public class User : IDisposable
     {
         Contacts c = new Contacts(nick, ip, port, false, 0, null, null);
         string file;
-        if ((file = File.ReadAllText(FileName)) == string.Empty)
+        //File.Exists(FileName)
+        using (StreamWriter sw = new StreamWriter(FileName, false))
         {
-            List<Contacts> toJson = new List<Contacts>();
-            toJson.Add(c);
-            File.WriteAllText(FileName,JsonSerializer.Serialize(toJson));
-        }
-        else
-        {
-            List<Contacts>? fromJson = JsonSerializer.Deserialize<List<Contacts>>(file);
-            fromJson?.Add(c);
-            if (fromJson != null) File.WriteAllText(FileName, JsonSerializer.Serialize(fromJson));
+            if ((file = File.ReadAllText(FileName)) == string.Empty)
+            {
+                List<Contacts> toJson = new List<Contacts>();
+                toJson.Add(c);
+                File.WriteAllText(FileName,JsonSerializer.Serialize(toJson));
+            }
+            else
+            {
+                List<Contacts>? fromJson = JsonSerializer.Deserialize<List<Contacts>>(file);
+                fromJson?.Add(c);
+                if (fromJson != null) File.WriteAllText(FileName, JsonSerializer.Serialize(fromJson));
+            }
         }
     }
 
