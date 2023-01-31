@@ -103,29 +103,29 @@ public class GuiMeneger
                 Object friends = kUser.TryFriendlyContacts(
                     result => 
                         _guis[0].PrintContacts(result, _top, cardSelection));
-                // Console.CursorTop = 8;
-                // Console.CursorLeft = 20;
-                // Console.CursorLeft = 0;
-                // Console.ForegroundColor = ConsoleColor.Black;
-                // Console.BackgroundColor = ConsoleColor.White;
-                // Console.Write("->");
-                // for (int i = Console.CursorLeft; i < 50; i++)
-                // {
-                //     Console.CursorLeft = i;
-                //     Console.Write(" ");
-                // }
-                // Console.CursorLeft = 0;
-                // Console.CursorLeft += 5;
-                // Console.CursorTop = 8;
+                Console.CursorTop = 8;
+                Console.CursorLeft = 20;
+                Console.CursorLeft = 0;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Write("->");
+                for (int i = Console.CursorLeft; i < 50; i++)
+                {
+                    Console.CursorLeft = i;
+                    Console.Write(" ");
+                }
+                Console.CursorLeft = 0;
+                Console.CursorLeft += 5;
+                Console.CursorTop = 8;
             }
             else
             {
                 _guis[cardSelection].Output = FindCorrectPerson((List<Contacts>)MonitorServerGui.GetMonitoredVar());
                 _guis[cardSelection].Update(_top, cardSelection);
             }
-
-            EnableInput.Set();
+            
             UpdateGui.Reset();
+            EnableInput.Set();
             //await Task.Delay(0);
         }
         Console.Clear();
@@ -203,32 +203,35 @@ public class GuiMeneger
 
             Console.CursorLeft = 0;
             msg = "Ty: " + msg;
-            if (!CheckForSpecialKeys(msg, endProgram) && cardSelection != 0)
+            if (!CheckForSpecialKeys(msg, endProgram))
             {
-                //_guis[cardSelection].SendGui(msg);
-                //_guis[cardSelection].Output.Add(msg);
-                List<Contacts> temp = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
-                foreach (var friend in temp)
+                if (cardSelection != 0)
                 {
-                    if (friend.Name == _guis[cardSelection].Name && friend.Ip == _guis[cardSelection].ip)
+                    //_guis[cardSelection].SendGui(msg);
+                    //_guis[cardSelection].Output.Add(msg);
+                    List<Contacts> temp = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
+                    foreach (var friend in temp)
                     {
-                        Client client = new Client(friend, usrName);
-                        friend.Active = client.SendMessage(msg);
-                        if (friend.Active)
-                            friend.Conf.Add(msg);
-                        else
-                            friend.Conf.Add("[HOST NIEAKTYWNY]");
+                        if (friend.Name == _guis[cardSelection].Name && friend.Ip == _guis[cardSelection].ip)
+                        {
+                            Client client = new Client(friend, usrName);
+                            friend.Active = client.SendMessage(msg);
+                            if (friend.Active)
+                                friend.Conf.Add(msg);
+                            else
+                                friend.Conf.Add("[HOST NIEAKTYWNY]");
+                        }
                     }
+                    //_guis[cardSelection].Update(_top, cardSelection);
+                    //Debug.WriteLine("Dupa 1");
+                    //EnableInput.Reset();
+                    UpdateGui.Set();
                 }
-                //_guis[cardSelection].Update(_top, cardSelection);
-                Debug.WriteLine("Dupa 1");
-                EnableInput.Reset();
-                UpdateGui.Set();
-            }
-            else if (cardSelection == 0)
-            {
-                EnableInput.Set();
-                _guis[cardSelection].Update(_top, cardSelection);
+                else if (cardSelection == 0)
+                {
+                    EnableInput.Set();
+                    _guis[cardSelection].Update(_top, cardSelection);
+                }
             }
 
             if (_endProgram.IsCancellationRequested)

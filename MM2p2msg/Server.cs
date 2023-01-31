@@ -104,7 +104,7 @@ public class Server : IConnectable
                 var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
                 var buffer = new byte[1024];
                 int bytesRead;
-                //stream.ReadTimeout = 1000;
+                //stream.ReadTimeout = 10000;
                 while (!endProgram.IsCancellationRequested && (bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
                 {
                     var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
