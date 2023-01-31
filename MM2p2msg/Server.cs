@@ -98,13 +98,14 @@ public class Server : IConnectable
         while (!endProgram.IsCancellationRequested)
         {
             var client = listener.AcceptTcpClient();
-            var task = Task.Factory.StartNew(async () =>
+            var task = Task.Factory.StartNew(() =>
             {
                 var stream = client.GetStream();
                 var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
                 var buffer = new byte[1024];
                 int bytesRead;
-                while (!endProgram.IsCancellationRequested && (bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, endProgram).ConfigureAwait(false)) > 0)
+                stream.ReadTimeout = 1000;
+                while (!endProgram.IsCancellationRequested && (bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
                 {
                     var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                     Debug.WriteLine("Otrzymano ip: "+message);

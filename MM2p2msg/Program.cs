@@ -7,17 +7,18 @@ internal abstract class P2Pmsg
     static AutoResetEvent _enableInput = new AutoResetEvent(false);
     private static CancellationTokenSource _endProgram = new CancellationTokenSource();
     static string UserName = "maciekP";
+
+    static void MainServerThread(Server mainServer, CancellationToken endProgramToken)
+    {
+        Task mainServerTask = mainServer.MainServerTask(endProgramToken);
+    }
+    
     static async Task Main()
     {
         var endProgramToken = _endProgram.Token;
         User kUser = new User(UserName);
         _enableInput.Set();
         GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, _enableInput, UserName, kUser);
-        //UserInterface gui = new UserInterface("Maciej");
-        //User.SaveContactToJson("maciek1", "192.168.1.1", 5005);
-        //User.SaveContactToJson("mati2", "192.168.1.2", 5005);
-        //User.SaveContactToJson("maciekPC", "127.0.0.1", 5001);
-        //User.SaveContactToJson("maciekP", "127.0.0.1", 5000);
         //User.SaveContactToJson("Mati", "26.101.171.76", 5000);
         // Try contact to friends
         List<Contacts>? friends = kUser.GetContactsFromJson();
@@ -32,47 +33,18 @@ internal abstract class P2Pmsg
         guiMeneger.MonitorServerGui = monitorServerGui;
         // Console.WriteLine("Dupa 4");
         Task mainServerTask = mainServer.MainServerTask(endProgramToken);
-        //Task mainServerTask = Task.Run(() => { mainServer.MainServerTask(); });
-        // Console.WriteLine("Dupa 5");
-        
-        // friends = await kUser.TryFriendlyContacts(
-        //     result => 
-        //         guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
-        //Task printUi = guiMeneger.PrintUi();
-        // Task printUi = guiMeneger.PrintUi();
-        // MonitorServerGui monitorServerGui = new MonitorServerGui(friends);
-        // Server mainServer = new Server(5000, monitorServerGui, _updateGui);
-        // guiMeneger.MonitorServerGui = monitorServerGui;
-        // Task mainServerTask = mainServer.MainServerTask();
-        // Console.WriteLine("Dupa 6");
-        // Task guiMenegerTask = guiMeneger.GetUserInput();
+        //Thread serverThread = new Thread(delegate() { MainServerThread(mainServer, endProgramToken); });
+        //serverThread.Start();
         Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram); });
         // Console.WriteLine("Dupa 7");
         // Task printUi = guiMeneger.PrintUi();
         Task printUi = Task.Run(() => { guiMeneger.PrintUi(endProgramToken); });
         await Task.WhenAll(mainServerTask, printUi, guiMenegerTask);
+        await Task.WhenAll(printUi, guiMenegerTask);
+        //serverThread.Abort();
         Console.Clear();
         Console.WriteLine("----------------------------------------------------------");
         Console.WriteLine("| Dziekujemy za kozystanie z naszego retro komunikatora! |");
         Console.WriteLine("----------------------------------------------------------");
     }
 }
-
-// 2. odczyt zapis do pliku json asynchroniczne zapisywanie do tablicy i potem do pliku <- Mati
-// 3. gui terminal <- Maciek
-
-// User k = new User();
-// UserInterface gui = new UserInterface("Maciek");
-// // User.SaveContactToJson("maciek1", "192.168.1.1", 5005);
-// // User.SaveContactToJson("mati2", "192.168.1.2", 5005);
-// k.GetContactsFromJson(record => gui.PrintContacts(record));
-// //Console.WriteLine("[1] "+gui.GetUserInput());
-// string msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
-// msg = gui.GetUserInput();
