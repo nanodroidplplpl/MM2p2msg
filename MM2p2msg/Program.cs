@@ -40,7 +40,7 @@ internal abstract class P2Pmsg
         // Task printUi = guiMeneger.PrintUi();
         Task printUi = Task.Run(() => { guiMeneger.PrintUi(endProgramToken); });
         await Task.WhenAll(mainServerTask, printUi, guiMenegerTask);
-        await Task.WhenAll(printUi, guiMenegerTask);
+        //await Task.WhenAll(printUi, guiMenegerTask);
         //serverThread.Abort();
         Console.Clear();
         Console.WriteLine("----------------------------------------------------------");

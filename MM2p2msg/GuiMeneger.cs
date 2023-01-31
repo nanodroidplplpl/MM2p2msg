@@ -97,26 +97,26 @@ public class GuiMeneger
         while (!endProgram.IsCancellationRequested)
         {
             UpdateGui.WaitOne();
-            //EnableInput.Reset();
+            EnableInput.Reset();
             if (cardSelection == 0)
             {
                 Object friends = kUser.TryFriendlyContacts(
                     result => 
                         _guis[0].PrintContacts(result, _top, cardSelection));
-                Console.CursorTop = 8;
-                Console.CursorLeft = 20;
-                Console.CursorLeft = 0;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.Write("->");
-                for (int i = Console.CursorLeft; i < 50; i++)
-                {
-                    Console.CursorLeft = i;
-                    Console.Write(" ");
-                }
-                Console.CursorLeft = 0;
-                Console.CursorLeft += 5;
-                Console.CursorTop = 8;
+                // Console.CursorTop = 8;
+                // Console.CursorLeft = 20;
+                // Console.CursorLeft = 0;
+                // Console.ForegroundColor = ConsoleColor.Black;
+                // Console.BackgroundColor = ConsoleColor.White;
+                // Console.Write("->");
+                // for (int i = Console.CursorLeft; i < 50; i++)
+                // {
+                //     Console.CursorLeft = i;
+                //     Console.Write(" ");
+                // }
+                // Console.CursorLeft = 0;
+                // Console.CursorLeft += 5;
+                // Console.CursorTop = 8;
             }
             else
             {
