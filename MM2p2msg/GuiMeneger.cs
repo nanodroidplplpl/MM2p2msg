@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace MM2p2msg;
 
@@ -75,7 +76,7 @@ public class GuiMeneger
     {
         _top.RemoveAt(cardSelection);
         cardSelection--;
-        PrintUi();
+        UpdateGui.Set();
     }
 
     public List<string> FindCorrectPerson(List<Contacts> con)
@@ -91,17 +92,31 @@ public class GuiMeneger
         return null;
     }
 
-    public void PrintUi()
+    public void PrintUi(CancellationToken endProgram)
     {
-        while (true)
+        while (!endProgram.IsCancellationRequested)
         {
             UpdateGui.WaitOne();
-            EnableInput.Reset();
+            //EnableInput.Reset();
             if (cardSelection == 0)
             {
                 Object friends = kUser.TryFriendlyContacts(
                     result => 
                         _guis[0].PrintContacts(result, _top, cardSelection));
+                Console.CursorTop = 8;
+                Console.CursorLeft = 20;
+                Console.CursorLeft = 0;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Write("->");
+                for (int i = Console.CursorLeft; i < 50; i++)
+                {
+                    Console.CursorLeft = i;
+                    Console.Write(" ");
+                }
+                Console.CursorLeft = 0;
+                Console.CursorLeft += 5;
+                Console.CursorTop = 8;
             }
             else
             {
@@ -113,6 +128,8 @@ public class GuiMeneger
             UpdateGui.Reset();
             //await Task.Delay(0);
         }
+        Console.Clear();
+        Console.WriteLine("Koniec");
     }
 
     public int FindSpecialKey(string msg)
@@ -127,7 +144,7 @@ public class GuiMeneger
         }
         return -1;
     }
-    public bool CheckForSpecialKeys(string msg)
+    public bool CheckForSpecialKeys(string msg, CancellationTokenSource endProgram)
     {
         switch (FindSpecialKey(msg))
         {
@@ -147,20 +164,23 @@ public class GuiMeneger
             case 4:
                 break;
             case 5:
-                
-                break;
+                endProgram.Cancel();
+                UpdateGui.Set();
+                // Console.Clear();
+                return true;
         }
 
         return false;
     }
     
-    public void GetUserInput()
+    public void GetUserInput(CancellationToken _endProgram, CancellationTokenSource endProgram)
     {
         while (true)
         {
             EnableInput.WaitOne();
             //Console.CursorTop += 5;
-            Console.CursorLeft = 40;
+            Console.CursorTop = 8;
+            Console.CursorLeft = 20;
             Console.CursorLeft = 0;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
@@ -183,7 +203,7 @@ public class GuiMeneger
 
             Console.CursorLeft = 0;
             msg = "Ty: " + msg;
-            if (!CheckForSpecialKeys(msg) && cardSelection != 0)
+            if (!CheckForSpecialKeys(msg, endProgram) && cardSelection != 0)
             {
                 //_guis[cardSelection].SendGui(msg);
                 //_guis[cardSelection].Output.Add(msg);
@@ -197,10 +217,12 @@ public class GuiMeneger
                         if (friend.Active)
                             friend.Conf.Add(msg);
                         else
-                            friend.Conf.Add("[HOST NIE AKTYWNY]");
+                            friend.Conf.Add("[HOST NIEAKTYWNY]");
                     }
                 }
                 //_guis[cardSelection].Update(_top, cardSelection);
+                Debug.WriteLine("Dupa 1");
+                EnableInput.Reset();
                 UpdateGui.Set();
             }
             else if (cardSelection == 0)
@@ -208,9 +230,14 @@ public class GuiMeneger
                 EnableInput.Set();
                 _guis[cardSelection].Update(_top, cardSelection);
             }
-            
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Black;
+
+            if (_endProgram.IsCancellationRequested)
+            {
+                return;
+            }
+            // Console.ForegroundColor = ConsoleColor.White;
+            // Console.BackgroundColor = ConsoleColor.Black;
+            // EnableInput.Reset();
             //await Task.Delay(0);
         }
     }

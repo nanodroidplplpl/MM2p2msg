@@ -89,6 +89,14 @@ public class UserInterface
         Update(top, cardSelection);
     }
 
+    public void ClearUILines()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            Console.WriteLine();
+        }
+    }
+
     public void SendGui(string msg)
     {
         string temp;
@@ -110,7 +118,8 @@ public class UserInterface
 
     public void Update(List<string>? top, int? cardSelection)
     {
-        Console.Clear();
+        //Console.Clear();
+        ClearUILines();
         Console.CursorTop = 0;
         Console.CursorLeft = 0;
         PrintTop(top, cardSelection);

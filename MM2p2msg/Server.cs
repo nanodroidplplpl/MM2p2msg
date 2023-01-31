@@ -49,7 +49,7 @@ public class Server : IConnectable
         string Saddress = address.ToString();
         Match match = Regex.Match(msg, @":AscConnection");
         List<Contacts> monitoredVar = (List<Contacts>)ServerGuiConnect.GetMonitoredVar();
-        Console.WriteLine("Dodaje dla: "+msg);
+        //Console.WriteLine("Dodaje dla: "+msg);
         if (!match.Success)
         {
             foreach (var mVar in monitoredVar)
@@ -85,7 +85,7 @@ public class Server : IConnectable
         _updateGui.Set();
     }
 
-    public async Task MainServerTask()
+    public async Task MainServerTask(CancellationToken endProgram)
     {
         IPHostEntry host = await Dns.GetHostEntryAsync(Dns.GetHostName());
         IPAddress localAddress = IPAddress.Parse("26.129.155.17");//host.AddressList[0];
@@ -95,25 +95,27 @@ public class Server : IConnectable
         //Console.WriteLine("Wstalo");
         List<Task> tasks = new List<Task>();
         
-        while (true)
+        while (!endProgram.IsCancellationRequested)
         {
             var client = listener.AcceptTcpClient();
-            var task = Task.Factory.StartNew(() =>
+            var task = Task.Factory.StartNew(async () =>
             {
                 var stream = client.GetStream();
                 var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
                 var buffer = new byte[1024];
                 int bytesRead;
-                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                while (!endProgram.IsCancellationRequested && (bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, endProgram).ConfigureAwait(false)) > 0)
                 {
                     var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                     Debug.WriteLine("Otrzymano ip: "+message);
                     if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message);
                 }
-            });
+            }, endProgram);
             tasks.Add(task);
+            if (endProgram.IsCancellationRequested) break;
         }
         //await Task.WhenAll(tasks);
+        Console.WriteLine("Kończe server");
     }
 
     public void Dispose()

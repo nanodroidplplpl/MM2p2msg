@@ -5,9 +5,11 @@ internal abstract class P2Pmsg
 {
     static AutoResetEvent _updateGui = new AutoResetEvent(false);
     static AutoResetEvent _enableInput = new AutoResetEvent(false);
+    private static CancellationTokenSource _endProgram = new CancellationTokenSource();
     static string UserName = "maciekP";
     static async Task Main()
     {
+        var endProgramToken = _endProgram.Token;
         User kUser = new User(UserName);
         _enableInput.Set();
         GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, _enableInput, UserName, kUser);
@@ -29,7 +31,7 @@ internal abstract class P2Pmsg
         // Console.WriteLine("Dupa 3");
         guiMeneger.MonitorServerGui = monitorServerGui;
         // Console.WriteLine("Dupa 4");
-        Task mainServerTask = mainServer.MainServerTask();
+        Task mainServerTask = mainServer.MainServerTask(endProgramToken);
         //Task mainServerTask = Task.Run(() => { mainServer.MainServerTask(); });
         // Console.WriteLine("Dupa 5");
         
@@ -44,11 +46,15 @@ internal abstract class P2Pmsg
         // Task mainServerTask = mainServer.MainServerTask();
         // Console.WriteLine("Dupa 6");
         // Task guiMenegerTask = guiMeneger.GetUserInput();
-        Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(); });
+        Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram); });
         // Console.WriteLine("Dupa 7");
         // Task printUi = guiMeneger.PrintUi();
-        Task printUi = Task.Run(() => { guiMeneger.PrintUi(); });
+        Task printUi = Task.Run(() => { guiMeneger.PrintUi(endProgramToken); });
         await Task.WhenAll(mainServerTask, printUi, guiMenegerTask);
+        Console.Clear();
+        Console.WriteLine("----------------------------------------------------------");
+        Console.WriteLine("| Dziekujemy za kozystanie z naszego retro komunikatora! |");
+        Console.WriteLine("----------------------------------------------------------");
     }
 }
 

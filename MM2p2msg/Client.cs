@@ -66,12 +66,12 @@ public class Client : IConnectable
         IPEndPoint endPoint = new IPEndPoint(ip, Contact.Port);
         CancellationTokenSource ctsClient = new CancellationTokenSource();
         CancellationToken ctClient = ctsClient.Token;
-        ctsClient.CancelAfter(1500);
+        ctsClient.CancelAfter(4000);
         try
         {
-            Socket.ConnectAsync(endPoint, ctClient);
+            Socket.Connect(endPoint);
         }
-        catch
+        catch (Exception)
         {
             return false;
         }

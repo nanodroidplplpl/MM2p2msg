@@ -58,7 +58,7 @@ public class User : IDisposable
         if (_obj != null)
             foreach (var o in _obj)
             {
-                Console.WriteLine(o.Ip);
+                //Console.WriteLine(o.Ip);
                 _clientPort++;
                 o.C = new Client(o, usrName){TempPort = _clientPort};
                 tryes.Add(o.C.TryConnect());
