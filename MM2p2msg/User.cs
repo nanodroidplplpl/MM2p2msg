@@ -24,21 +24,17 @@ public class User : IDisposable
     {
         Contacts c = new Contacts(nick, ip, port, false, 0, null, null);
         string file;
-        //File.Exists(FileName)
-        using (StreamWriter sw = new StreamWriter(FileName, false))
+        if (!File.Exists(FileName))//((file = File.ReadAllText(FileName)) == string.Empty)
         {
-            if ((file = File.ReadAllText(FileName)) == string.Empty)
-            {
-                List<Contacts> toJson = new List<Contacts>();
-                toJson.Add(c);
-                File.WriteAllText(FileName,JsonSerializer.Serialize(toJson));
-            }
-            else
-            {
-                List<Contacts>? fromJson = JsonSerializer.Deserialize<List<Contacts>>(file);
-                fromJson?.Add(c);
-                if (fromJson != null) File.WriteAllText(FileName, JsonSerializer.Serialize(fromJson));
-            }
+            List<Contacts> toJson = new List<Contacts>();
+            toJson.Add(c);
+            File.WriteAllText(FileName,JsonSerializer.Serialize(toJson));
+        }
+        else
+        {
+            List<Contacts>? fromJson = JsonSerializer.Deserialize<List<Contacts>>(file = File.ReadAllText(FileName));
+            fromJson?.Add(c);
+            if (fromJson != null) File.WriteAllText(FileName, JsonSerializer.Serialize(fromJson));
         }
     }
 

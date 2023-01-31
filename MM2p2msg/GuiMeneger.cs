@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace MM2p2msg;
 
@@ -219,6 +220,7 @@ public class GuiMeneger
             Console.CursorLeft = 0;
             Console.CursorLeft += 5;
             string? msg = Console.ReadLine();
+            Debug.WriteLine(msg);
             Console.CursorTop -= 1;
             if (msg != null)
                 for (int i = 0; i < msg.Length; i++)
