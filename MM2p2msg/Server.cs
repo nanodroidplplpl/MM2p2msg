@@ -58,7 +58,7 @@ public class Server : IConnectable
             {
                 if (mVar.Ip == Saddress)
                 {
-                    mVar.Conf.Add(mVar.Name+msg);
+                    mVar.Conf.Add(mVar.Name+": "+msg);
                     //Debug.WriteLine("Dodaje dla: "+mVar.Name);
                     // using (StreamWriter sw = File.CreateText(@"dupa_kurwa_dupa_jebana1.txt"))
                     // {
@@ -90,15 +90,21 @@ public class Server : IConnectable
     public async Task MainServerTask(CancellationToken endProgram)
     {
         IPHostEntry host = await Dns.GetHostEntryAsync(Dns.GetHostName());
-        IPAddress localAddress = IPAddress.Parse("26.129.155.17");//host.AddressList[0];
+        IPAddress localAddress = IPAddress.Parse(UserIp); //host.AddressList[0];
 
         var listener = new TcpListener(localAddress, 5000);
         listener.Start();
         //Console.WriteLine("Wstalo");
         List<Task> tasks = new List<Task>();
-        
+        listener.Server.ReceiveTimeout = 100;
+        listener.Server.SendTimeout = 100;
         while (!endProgram.IsCancellationRequested)
         {
+            if (!listener.Pending())
+            {
+                Thread.Sleep(100);
+                continue;
+            };
             var client = listener.AcceptTcpClient();
             var task = Task.Factory.StartNew(() =>
             {
@@ -106,17 +112,22 @@ public class Server : IConnectable
                 var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
                 var buffer = new byte[1024];
                 int bytesRead;
-                //stream.ReadTimeout = 10000;
-                while (!endProgram.IsCancellationRequested && (bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                while (!endProgram.IsCancellationRequested)
                 {
+                    if (!stream.DataAvailable)
+                    {
+                        Thread.Sleep(100);
+                        continue;
+                    }
+                    bytesRead = stream.Read(buffer, 0, buffer.Length);
                     var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                    Debug.WriteLine("Otrzymano ip: "+message);
+                    Debug.WriteLine("Otrzymano ip: " + message);
                     if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message);
                 }
             }, endProgram);
             tasks.Add(task);
-            if (endProgram.IsCancellationRequested) break;
         }
+        listener.Stop();
         //await Task.WhenAll(tasks);
         Console.WriteLine("Kończe server");
     }

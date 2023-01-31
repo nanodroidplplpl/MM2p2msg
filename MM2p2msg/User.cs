@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System.Diagnostics;
+using System.Net.Sockets;
 using System.Text.Json;
 
 namespace MM2p2msg;
@@ -76,15 +77,52 @@ public class User : IDisposable
         return output;
     }
 
-    public void SaveConf(List<Contacts> toFile, string UserName)
+    public void SaveConf(List<Contacts> toFile)
     {
         foreach (var file in toFile)
         {
-            using (StreamWriter sw = File.CreateText(UserName))
+            using (StreamWriter sw = new StreamWriter(file.Name, false))
             {
-                File.WriteAllText(file.Name, JsonSerializer.Serialize(file.Conf));
+                //List<string> confList = new List<string>();
+                foreach (var con in file.Conf)
+                {
+                    sw.WriteLine(con);
+                }
             }
         }
+    }
+
+    public List<Contacts> ReadFrom(List<Contacts> fromFile)
+    {
+        foreach (var file in fromFile)
+        {
+            if (File.Exists(file.Name))
+            {
+                string file_stuff;
+                using (var streamReader = new StreamReader(file.Name))
+                {
+                    file_stuff = streamReader.ReadToEnd();
+                    if (file_stuff != string.Empty)
+                    {
+                        List<(string, int)> confList = new List<(string, int)>();
+                        string[] lines = file_stuff.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                        int iter = 0;
+                        foreach (string l in lines)
+                        {
+                            confList.Add((l,iter));
+                            iter++;
+                        }
+                        confList.RemoveAt(iter-1);
+                        var topFive = confList.OrderByDescending(c => c.Item2).Take(5).Reverse();
+                        foreach (var conf in topFive)
+                        {
+                            file.Conf.Add(conf.Item1);
+                        }
+                    }
+                }
+            }
+        }
+        return fromFile;
     }
 
     public async Task RunServer()

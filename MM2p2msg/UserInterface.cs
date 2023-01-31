@@ -21,8 +21,8 @@ public class UserInterface
         ip = friend.Ip;
         Console.Clear();
         //Console.WriteLine("Hello "+name);
-        Output.Add(".NET chat, Nowy Elegancki Terminal NET");
-        Output.Add("Konwersacja: ");
+        //Output.Add(".NET chat, Nowy Elegancki Terminal NET");
+        //Output.Add("Konwersacja: ");
         Name = friend.Name;
         ListSize = 2;
         ListMaxSize = 7;

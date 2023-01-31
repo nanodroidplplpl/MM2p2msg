@@ -13,6 +13,8 @@ public class GuiMeneger
         Name = name;
         _guis.Add(new UserInterface(new Contacts("Menu", "helo", 124, false, 111, null, null)));
         _top.Add("Menu");
+        _guis[0].Output.Add(".NET chat, Nowy Elegancki Terminal Net");
+        _guis[0].Output.Add("Znajomi");
         UpdateGui = updateGui;
         this.usrName = usrName;
         this.kUser = kUser;
@@ -171,8 +173,11 @@ public class GuiMeneger
             case 4:
                 break;
             case 5:
-                endProgram.Cancel();
+                endProgram.Cancel(); 
+                List<Contacts> kontakty = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
+                kUser.SaveConf(kontakty);
                 UpdateGui.Set();
+                EnableInput.Set();
                 // Console.Clear();
                 return true;
                 break;
@@ -185,6 +190,11 @@ public class GuiMeneger
     {
         while (true)
         {
+            if (_endProgram.IsCancellationRequested)
+            {
+                Console.WriteLine("Koniec Watku menegeraGui");
+                return;
+            }
             EnableInput.WaitOne();
             //Console.CursorTop += 5;
             Console.CursorTop = 8;
@@ -210,7 +220,6 @@ public class GuiMeneger
                 }
 
             Console.CursorLeft = 0;
-            msg = "Ty: " + msg;
             if (!CheckForSpecialKeys(msg, endProgram))
             {
                 if (cardSelection != 0)
@@ -232,7 +241,7 @@ public class GuiMeneger
                     }
                     //_guis[cardSelection].Update(_top, cardSelection);
                     //Debug.WriteLine("Dupa 1");
-                    //EnableInput.Reset();
+                    EnableInput.Reset();
                     UpdateGui.Set();
                 }
                 else if (cardSelection == 0)
@@ -245,6 +254,7 @@ public class GuiMeneger
             // Console.BackgroundColor = ConsoleColor.Black;
             // EnableInput.Reset();
             //await Task.Delay(0);
+            msg = "";
         }
     }
 }

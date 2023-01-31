@@ -27,6 +27,7 @@ internal abstract class P2Pmsg
         friends = await kUser.TryFriendlyContacts(
             result => 
                 guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
+        friends = kUser.ReadFrom(friends);
         // Console.WriteLine("Dupa 1");
         MonitorServerGui monitorServerGui = new MonitorServerGui(friends); 
         // Console.WriteLine("Dupa 2");
