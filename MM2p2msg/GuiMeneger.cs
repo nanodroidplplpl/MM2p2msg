@@ -183,7 +183,7 @@ public class GuiMeneger
                     {
                         friend.Conf.Add(msg);
                         Client client = new Client(friend, usrName);
-                        client.SendMessage(msg);
+                        friend.Active = client.SendMessage(msg);
                     }
                 }
                 //_guis[cardSelection].Update(_top, cardSelection);

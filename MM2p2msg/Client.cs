@@ -58,14 +58,26 @@ public class Client : IConnectable
         return Contact;
     }
 
-    public void SendMessage(string msg)
+    public bool SendMessage(string msg)
     {
         byte[] msgSerialized = Encoding.ASCII.GetBytes(msg);
         Socket = CreateSocket();
         IPAddress ip = IPAddress.Parse(Contact.Ip);
         IPEndPoint endPoint = new IPEndPoint(ip, Contact.Port);
-        Socket.Connect(endPoint);
+        CancellationTokenSource ctsClient = new CancellationTokenSource();
+        CancellationToken ctClient = ctsClient.Token;
+        ctsClient.CancelAfter(1500);
+        try
+        {
+            Socket.ConnectAsync(endPoint, ctClient);
+        }
+        catch
+        {
+            return false;
+        }
+
         Socket.Send(msgSerialized);
+        return true;
     }
 
     public void Dispose()
