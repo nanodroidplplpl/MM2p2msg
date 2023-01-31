@@ -73,6 +73,7 @@ public class Server : IConnectable
                 if (mVar.Ip == Saddress)
                 {
                     mVar.Active = true;
+                    _updateGui.Set();
                     return;
                 }
             }

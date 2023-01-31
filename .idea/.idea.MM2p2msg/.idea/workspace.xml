@@ -4,10 +4,9 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="poprawione changeTab">
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="Wywalenie crusha przy wysyłaniu do już nie aktywnego kontaktu">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +29,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/GuiMeneger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/UserInterface.cs" root0="SKIP_HIGHLIGHTING" />
@@ -153,7 +154,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675120925014</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Poprawienie UI">
+      <created>1675156399873</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1675156399873</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Wywalenie crusha przy wysyłaniu do już nie aktywnego kontaktu">
+      <created>1675157080298</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1675157080298</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +183,9 @@
     <MESSAGE value="UI" />
     <MESSAGE value="zmiana pomiędzy kartami działa dobrze" />
     <MESSAGE value="poprawione changeTab" />
-    <option name="LAST_COMMIT_MESSAGE" value="poprawione changeTab" />
+    <MESSAGE value="Poprawienie UI" />
+    <MESSAGE value="Wywalenie crusha przy wysyłaniu do już nie aktywnego kontaktu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wywalenie crusha przy wysyłaniu do już nie aktywnego kontaktu" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

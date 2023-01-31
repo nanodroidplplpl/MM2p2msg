@@ -181,9 +181,12 @@ public class GuiMeneger
                 {
                     if (friend.Name == _guis[cardSelection].Name && friend.Ip == _guis[cardSelection].ip)
                     {
-                        friend.Conf.Add(msg);
                         Client client = new Client(friend, usrName);
                         friend.Active = client.SendMessage(msg);
+                        if (friend.Active)
+                            friend.Conf.Add(msg);
+                        else
+                            friend.Conf.Add("[HOST NIE AKTYWNY]");
                     }
                 }
                 //_guis[cardSelection].Update(_top, cardSelection);
