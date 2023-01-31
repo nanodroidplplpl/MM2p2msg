@@ -91,7 +91,7 @@ public class Server : IConnectable
 
         var listener = new TcpListener(localAddress, 5000);
         listener.Start();
-        Console.WriteLine("Wstalo");
+        //Console.WriteLine("Wstalo");
         List<Task> tasks = new List<Task>();
         
         while (true)

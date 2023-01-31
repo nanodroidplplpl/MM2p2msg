@@ -4,11 +4,13 @@ namespace MM2p2msg;
 internal abstract class P2Pmsg
 {
     static AutoResetEvent _updateGui = new AutoResetEvent(false);
+    static AutoResetEvent _enableInput = new AutoResetEvent(false);
     static string UserName = "maciekP";
     static async Task Main()
     {
         User kUser = new User(UserName);
-        GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, UserName, kUser);
+        _enableInput.Set();
+        GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, _enableInput, UserName, kUser);
         //UserInterface gui = new UserInterface("Maciej");
         //User.SaveContactToJson("maciek1", "192.168.1.1", 5005);
         //User.SaveContactToJson("mati2", "192.168.1.2", 5005);
@@ -20,16 +22,16 @@ internal abstract class P2Pmsg
         friends = await kUser.TryFriendlyContacts(
             result => 
                 guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
-        Console.WriteLine("Dupa 1");
+        // Console.WriteLine("Dupa 1");
         MonitorServerGui monitorServerGui = new MonitorServerGui(friends); 
-        Console.WriteLine("Dupa 2");
+        // Console.WriteLine("Dupa 2");
         Server mainServer = new Server(5000, monitorServerGui, _updateGui);
-        Console.WriteLine("Dupa 3");
+        // Console.WriteLine("Dupa 3");
         guiMeneger.MonitorServerGui = monitorServerGui;
-        Console.WriteLine("Dupa 4");
+        // Console.WriteLine("Dupa 4");
         Task mainServerTask = mainServer.MainServerTask();
         //Task mainServerTask = Task.Run(() => { mainServer.MainServerTask(); });
-        Console.WriteLine("Dupa 5");
+        // Console.WriteLine("Dupa 5");
         
         // friends = await kUser.TryFriendlyContacts(
         //     result => 
@@ -40,10 +42,10 @@ internal abstract class P2Pmsg
         // Server mainServer = new Server(5000, monitorServerGui, _updateGui);
         // guiMeneger.MonitorServerGui = monitorServerGui;
         // Task mainServerTask = mainServer.MainServerTask();
-        Console.WriteLine("Dupa 6");
+        // Console.WriteLine("Dupa 6");
         // Task guiMenegerTask = guiMeneger.GetUserInput();
         Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(); });
-        Console.WriteLine("Dupa 7");
+        // Console.WriteLine("Dupa 7");
         // Task printUi = guiMeneger.PrintUi();
         Task printUi = Task.Run(() => { guiMeneger.PrintUi(); });
         await Task.WhenAll(mainServerTask, printUi, guiMenegerTask);

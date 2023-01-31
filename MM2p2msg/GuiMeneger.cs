@@ -4,7 +4,7 @@ namespace MM2p2msg;
 
 public class GuiMeneger
 {
-    public GuiMeneger(string name, AutoResetEvent updateGui, string usrName, User kUser)
+    public GuiMeneger(string name, AutoResetEvent updateGui, AutoResetEvent enableInput, string usrName, User kUser)
     {
         cardSelection = 0;
         _guis = new List<UserInterface>();
@@ -16,6 +16,7 @@ public class GuiMeneger
         UpdateGui = updateGui;
         this.usrName = usrName;
         this.kUser = kUser;
+        EnableInput = enableInput;
     }
 
     private User kUser;
@@ -33,6 +34,8 @@ public class GuiMeneger
     public string Name;
 
     public AutoResetEvent UpdateGui;
+    
+    public AutoResetEvent EnableInput;
 
     public string usrName;
     
@@ -44,7 +47,7 @@ public class GuiMeneger
         List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
         foreach (var friend in friends)
         {
-            if (match.Groups[1].Value == friend.Name && match.Groups[2].Value == friend.Ip)
+            if (match.Groups[1].Value == friend.Name && match.Groups[2].Value == friend.Ip && friend.Active)
             {
                 UserInterface ui = new UserInterface(friend);
                 _guis.Add(ui);
@@ -87,6 +90,7 @@ public class GuiMeneger
         while (true)
         {
             UpdateGui.WaitOne();
+            EnableInput.Reset();
             if (cardSelection == 0)
             {
                 Object friends = kUser.TryFriendlyContacts(
@@ -98,6 +102,8 @@ public class GuiMeneger
                 _guis[cardSelection].Output = FindCorrectPerson((List<Contacts>)MonitorServerGui.GetMonitoredVar());
                 _guis[cardSelection].Update(_top, cardSelection);
             }
+
+            EnableInput.Set();
             UpdateGui.Reset();
             //await Task.Delay(0);
         }
@@ -141,7 +147,9 @@ public class GuiMeneger
     {
         while (true)
         {
-            Console.CursorTop += 5;
+            EnableInput.WaitOne();
+            //Console.CursorTop += 5;
+            Console.CursorLeft = 40;
             Console.CursorLeft = 0;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
@@ -164,7 +172,7 @@ public class GuiMeneger
 
             Console.CursorLeft = 0;
             msg = "Ty: " + msg;
-            if (msg != null && !CheckForSpecialKeys(msg) && cardSelection != 0)
+            if (!CheckForSpecialKeys(msg) && cardSelection != 0)
             {
                 //_guis[cardSelection].SendGui(msg);
                 //_guis[cardSelection].Output.Add(msg);
@@ -183,6 +191,7 @@ public class GuiMeneger
             }
             else if (cardSelection == 0)
             {
+                EnableInput.Set();
                 _guis[cardSelection].Update(_top, cardSelection);
             }
             
