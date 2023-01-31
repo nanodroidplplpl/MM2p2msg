@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -51,6 +52,7 @@ public class Client : IConnectable
         }
         Contact.Active = true;
         byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection");
+        Debug.WriteLine("Wysylam probe polaczenia do Mati");
         SocketAsyncEventArgs args = new SocketAsyncEventArgs();
         args.RemoteEndPoint = endPoint;
         args.SetBuffer(buffer, 0, buffer.Length);

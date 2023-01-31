@@ -99,23 +99,28 @@ public class GuiMeneger
             EnableInput.Reset();
             if (cardSelection == 0)
             {
-                Object friends = kUser.TryFriendlyContacts(
-                    result => 
-                        _guis[0].PrintContacts(result, _top, cardSelection));
-                // Console.CursorTop = 8;
-                // Console.CursorLeft = 20;
-                // Console.CursorLeft = 0;
-                // Console.ForegroundColor = ConsoleColor.Black;
-                // Console.BackgroundColor = ConsoleColor.White;
-                // Console.Write("->");
-                // for (int i = Console.CursorLeft; i < 50; i++)
-                // {
-                //     Console.CursorLeft = i;
-                //     Console.Write(" ");
-                // }
-                // Console.CursorLeft = 0;
-                // Console.CursorLeft += 5;
-                // Console.CursorTop = 8;
+                // Object friends = kUser.TryFriendlyContacts(
+                //     result => 
+                //         _guis[0].PrintContacts(result, _top, cardSelection));
+                List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
+                foreach (var friend in friends)
+                {
+                    _guis[0].PrintContacts(friend, _top, cardSelection);
+                }
+                Console.CursorTop = 8;
+                Console.CursorLeft = 20;
+                Console.CursorLeft = 0;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Write("->");
+                for (int i = Console.CursorLeft; i < 50; i++)
+                {
+                    Console.CursorLeft = i;
+                    Console.Write(" ");
+                }
+                Console.CursorLeft = 0;
+                Console.CursorLeft += 5;
+                Console.CursorTop = 8;
             }
             else
             {
@@ -227,7 +232,7 @@ public class GuiMeneger
                     }
                     //_guis[cardSelection].Update(_top, cardSelection);
                     //Debug.WriteLine("Dupa 1");
-                    EnableInput.Reset();
+                    //EnableInput.Reset();
                     UpdateGui.Set();
                 }
                 else if (cardSelection == 0)
@@ -235,11 +240,6 @@ public class GuiMeneger
                     EnableInput.Set();
                     _guis[cardSelection].Update(_top, cardSelection);
                 }
-            }
-
-            if (_endProgram.IsCancellationRequested)
-            {
-                return;
             }
             // Console.ForegroundColor = ConsoleColor.White;
             // Console.BackgroundColor = ConsoleColor.Black;
