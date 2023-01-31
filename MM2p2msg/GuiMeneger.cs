@@ -21,7 +21,8 @@ public class GuiMeneger
 
     private User kUser;
 
-    private static readonly string[] SpecialKeys = {@"/changeTab", @"/newConf", @"/deleteConf", @"/addFriend", @"/deleteFriend"};
+    private static readonly string[] SpecialKeys = {@"/changeTab", @"/newConf",
+        @"/deleteConf", @"/addFriend", @"/deleteFriend", @"/exit"};
     
     public List<UserInterface> _guis;
 
@@ -63,6 +64,11 @@ public class GuiMeneger
     {
         
         return;
+    }
+
+    public void Exit()
+    {
+        throw new NotImplementedException();
     }
 
     public void DeleteConf()
@@ -137,6 +143,11 @@ public class GuiMeneger
                 DeleteConf();
                 return true;
             case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                
                 break;
         }
 
