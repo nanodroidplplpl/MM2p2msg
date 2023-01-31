@@ -7,6 +7,7 @@ internal abstract class P2Pmsg
     static AutoResetEvent _enableInput = new AutoResetEvent(false);
     private static CancellationTokenSource _endProgram = new CancellationTokenSource();
     static string UserName = "maciekP";
+    private static string UserIP = "26.129.155.17";
 
     static void MainServerThread(Server mainServer, CancellationToken endProgramToken)
     {
@@ -15,6 +16,7 @@ internal abstract class P2Pmsg
     
     static async Task Main()
     {
+        
         var endProgramToken = _endProgram.Token;
         User kUser = new User(UserName);
         _enableInput.Set();
@@ -28,7 +30,7 @@ internal abstract class P2Pmsg
         // Console.WriteLine("Dupa 1");
         MonitorServerGui monitorServerGui = new MonitorServerGui(friends); 
         // Console.WriteLine("Dupa 2");
-        Server mainServer = new Server(5000, monitorServerGui, _updateGui);
+        Server mainServer = new Server(5000, monitorServerGui, _updateGui, UserIP);
         // Console.WriteLine("Dupa 3");
         guiMeneger.MonitorServerGui = monitorServerGui;
         // Console.WriteLine("Dupa 4");

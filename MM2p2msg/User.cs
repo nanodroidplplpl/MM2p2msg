@@ -76,6 +76,17 @@ public class User : IDisposable
         return output;
     }
 
+    public void SaveConf(List<Contacts> toFile, string UserName)
+    {
+        foreach (var file in toFile)
+        {
+            using (StreamWriter sw = File.CreateText(UserName))
+            {
+                File.WriteAllText(file.Name, JsonSerializer.Serialize(file.Conf));
+            }
+        }
+    }
+
     public async Task RunServer()
     {
         // Server s = new Server(_localServerPort);

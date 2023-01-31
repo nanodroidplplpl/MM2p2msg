@@ -15,12 +15,14 @@ public class Server : IConnectable
 
     public MonitorServerGui ServerGuiConnect;
     private AutoResetEvent _updateGui;
+    private string UserIp;
 
-    public Server(int port, MonitorServerGui serverGuiConnect, AutoResetEvent updateGui)
+    public Server(int port, MonitorServerGui serverGuiConnect, AutoResetEvent updateGui, string userIp)
     {
         Port = port;
         ServerGuiConnect = serverGuiConnect;
         _updateGui = updateGui;
+        UserIp = userIp;
     }
     public Socket CreateSocket()
     {
