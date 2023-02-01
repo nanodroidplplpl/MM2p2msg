@@ -20,11 +20,17 @@ public class User : IDisposable
         this.usrName = usrName;
     }
     
-    public static void SaveContactToJson(string nick, string ip, int port)
+    public void SaveContactToJson(string nick, string ip, int port)
     {
         Contacts c = new Contacts(nick, ip, port, false, 0, null, null);
         string file;
         if (!File.Exists(FileName))//((file = File.ReadAllText(FileName)) == string.Empty)
+        {
+            List<Contacts> toJson = new List<Contacts>();
+            toJson.Add(c);
+            File.WriteAllText(FileName,JsonSerializer.Serialize(toJson));
+        }
+        else if ((file = File.ReadAllText(FileName)) == string.Empty)
         {
             List<Contacts> toJson = new List<Contacts>();
             toJson.Add(c);

@@ -75,6 +75,8 @@ public class Server : IConnectable
                 if (mVar.Ip == Saddress)
                 {
                     mVar.Active = true;
+                    // ServerGuiConnect.SetMonitoredVar(monitoredVar);
+                    // Debug.WriteLine("Zmieniono: active dla"+mVar.Name+" stan "+mVar.Active);
                     _updateGui.Set();
                     return;
                 }
@@ -104,7 +106,7 @@ public class Server : IConnectable
             {
                 Thread.Sleep(100);
                 continue;
-            };
+            }
             var client = listener.AcceptTcpClient();
             var task = Task.Factory.StartNew(() =>
             {

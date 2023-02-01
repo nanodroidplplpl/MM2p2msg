@@ -6,8 +6,8 @@ internal abstract class P2Pmsg
     static AutoResetEvent _updateGui = new AutoResetEvent(false);
     static AutoResetEvent _enableInput = new AutoResetEvent(false);
     private static CancellationTokenSource _endProgram = new CancellationTokenSource();
-    private static string UserName; //= "maciekP";
-    private static string UserIP; //= "26.129.155.17";
+    private static string UserName = "maciekP";
+    private static string UserIP = "26.129.155.17";
 
     static void MainServerThread(Server mainServer, CancellationToken endProgramToken)
     {
@@ -16,16 +16,16 @@ internal abstract class P2Pmsg
     
     static async Task Main()
     {
-        Console.WriteLine("----------------------------------------------------------");
-        Console.Write("Podziel sie swoim imieniem: ");
-        UserName = Console.ReadLine();
-        Console.Write("Podaj ip swojego komputera: ");
-        UserIP = Console.ReadLine();
+        // Console.WriteLine("----------------------------------------------------------");
+        // Console.Write("Podziel sie swoim imieniem: ");
+        // UserName = Console.ReadLine();
+        // Console.Write("Podaj ip swojego komputera: ");
+        // UserIP = Console.ReadLine();
         var endProgramToken = _endProgram.Token;
         User kUser = new User(UserName);
         _enableInput.Set();
         GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, _enableInput, UserName, kUser);
-        User.SaveContactToJson("Mati", "26.101.171.76", 5000);
+        //User.SaveContactToJson("Mati", "26.101.171.76", 5000);
         // Try contact to friends
         List<Contacts>? friends = kUser.GetContactsFromJson();
         friends = await kUser.TryFriendlyContacts(

@@ -76,10 +76,38 @@ public class GuiMeneger
         EnableInput.Set();
     }
 
-    public void UpdateConf()
+    public bool CheckIpClones(List<Contacts> con, string ip)
     {
-        
-        return;
+        foreach (var c in con)
+        {
+            if (c.Ip == ip)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void AddFriend()
+    {
+        EnableInput.Reset();
+        Console.Clear();
+        List<Contacts> con = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
+        Console.WriteLine("--------------------------------------");
+        Console.WriteLine("           Dodaj Znajomego            ");
+        Console.Write("Podaj nazwisko znajomego: ");
+        string FriendNick = Console.ReadLine();
+        Console.Write("Podaj IP znajomego: ");
+        string? friendIp = Console.ReadLine();
+        Match s = Regex.Match(friendIp,@"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$");
+        if (CheckIpClones(con, friendIp) && s.Success)
+        {
+            Contacts c = new Contacts(FriendNick, friendIp, 5000, false, 660, null, null);
+            con.Add(c);
+            kUser.SaveContactToJson(FriendNick, friendIp, 5000);
+            MonitorServerGui.SetMonitoredVar(con);
+        }
+        EnableInput.Set();
     }
 
     public void Exit()
@@ -179,7 +207,10 @@ public class GuiMeneger
                 AddNewConf(msg);
                 return true;
             case SpecialKey.DeleteConf:
-                DeleteConf();
+                if (cardSelection != 0) DeleteConf();
+                return true;
+            case SpecialKey.AddFriend:
+                AddFriend();
                 return true;
             case SpecialKey.Exit:
                 endProgram.Cancel(); 
