@@ -194,6 +194,7 @@ public class GuiMeneger
                 //     result => 
                 //         _guis[0].PrintContacts(result, _top, cardSelection));
                 Console.Clear();
+                _guis[0].Output.Clear();
                 List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
                 foreach (var friend in friends)
                 {
