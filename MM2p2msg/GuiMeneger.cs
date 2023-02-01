@@ -100,14 +100,15 @@ public class GuiMeneger
         Console.Write("Podaj IP znajomego: ");
         string? friendIp = Console.ReadLine();
         Match s = Regex.Match(friendIp,@"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$");
-        if (CheckIpClones(con, friendIp) && s.Success)
+        if (!CheckIpClones(con, friendIp) && s.Success)
         {
             Contacts c = new Contacts(FriendNick, friendIp, 5000, false, 660, null, null);
             con.Add(c);
             kUser.SaveContactToJson(FriendNick, friendIp, 5000);
             MonitorServerGui.SetMonitoredVar(con);
         }
-        EnableInput.Set();
+        Console.Clear();
+        UpdateGui.Set();
     }
 
     public void Exit()
