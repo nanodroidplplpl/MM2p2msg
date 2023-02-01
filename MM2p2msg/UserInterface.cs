@@ -16,13 +16,9 @@ public class UserInterface
 
     public UserInterface(Contacts friend)
     {
-        //Output = new List<string>();
         Output = friend.Conf;
         ip = friend.Ip;
         Console.Clear();
-        //Console.WriteLine("Hello "+name);
-        //Output.Add(".NET chat, Nowy Elegancki Terminal NET");
-        //Output.Add("Konwersacja: ");
         Name = friend.Name;
         ListSize = 2;
         ListMaxSize = 7;
@@ -102,31 +98,15 @@ public class UserInterface
         string temp;
         Console.ForegroundColor = ConsoleColor.White;
         Console.BackgroundColor = ConsoleColor.Black;
-        // if (Output.Count < ListMaxSize)
-        //     Output.Add(msg);
-        // else
-        // {
-        //     for (int i = 2; i < Output.Count-1; i++)
-        //     {
-        //         Output[i] = Output[i + 1];
-        //     }
-        //
-        //     Output[Output.Count - 1] = msg;
-        // }
         Output.Add(msg);
     }
 
     public void Update(List<string>? top, int? cardSelection)
     {
-        //Console.Clear();
         ClearUILines();
         Console.CursorTop = 0;
         Console.CursorLeft = 0;
         PrintTop(top, cardSelection);
-        // foreach (var line in Output)
-        // {
-        //     Console.WriteLine(line);
-        // }
         if (Output.Count < 6)
         {
             foreach (var line in Output)

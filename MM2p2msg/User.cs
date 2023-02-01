@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace MM2p2msg;
 
-public class User : IDisposable
+public class User
 {
     private const string FileName = "friends";
     private int _clientPort = 5050;
@@ -24,7 +24,7 @@ public class User : IDisposable
     {
         Contacts c = new Contacts(nick, ip, port, false, 0, null, null);
         string file;
-        if (!File.Exists(FileName))//((file = File.ReadAllText(FileName)) == string.Empty)
+        if (!File.Exists(FileName))
         {
             List<Contacts> toJson = new List<Contacts>();
             toJson.Add(c);
@@ -75,7 +75,6 @@ public class User : IDisposable
         return new List<Contacts>();
     }
 
-    // Mozna uzyc np getCdontactsFromJson(line -> funkcja(line)) funkcja zapisuje dane do tablicy
     public async Task<List<Contacts>> TryFriendlyContacts(Action<Contacts> newContact)
     {
         List<Task<Contacts>> tryes = new List<Task<Contacts>>();
@@ -84,7 +83,6 @@ public class User : IDisposable
         if (_obj != null)
             foreach (var o in _obj)
             {
-                //Console.WriteLine(o.Ip);
                 _clientPort++;
                 o.C = new Client(o, usrName){TempPort = _clientPort};
                 tryes.Add(o.C.TryConnect());
@@ -108,7 +106,6 @@ public class User : IDisposable
         {
             using (StreamWriter sw = new StreamWriter(file.Name, false))
             {
-                //List<string> confList = new List<string>();
                 foreach (var con in file.Conf)
                 {
                     sw.WriteLine(con);
@@ -148,19 +145,5 @@ public class User : IDisposable
             }
         }
         return fromFile;
-    }
-
-    public async Task RunServer()
-    {
-        // Server s = new Server(_localServerPort);
-        // Servers.Add(s);
-        // _localServerPort++;
-        // await s.GetMsg(CtsS[_localServerPort-5001].Token);
-        
-    }
-
-    public void Dispose()
-    {
-        throw new NotImplementedException();
     }
 }

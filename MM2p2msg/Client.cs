@@ -12,8 +12,6 @@ public class Client : IConnectable
     public int TempPort = 5050;
     public string usrName;
 
-    // Utworzyc tablice na znajome hosty
-    
     public Client(Contacts contact, string usrName)
     {
         Contact = contact;
@@ -32,8 +30,6 @@ public class Client : IConnectable
         Socket.ReceiveTimeout = 1;
         IPAddress ip = IPAddress.Parse(Contact.Ip);
         IPEndPoint endPoint = new IPEndPoint(ip, Contact.Port);
-        //IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, _tempPort);
-        //socket.Bind(localEndPoint);
 
         CancellationTokenSource ctsClient = new CancellationTokenSource();
         CancellationToken ctClient = ctsClient.Token;
@@ -43,7 +39,6 @@ public class Client : IConnectable
         {
             await Socket.ConnectAsync(endPoint, ctClient);
             Contact.Active = true;
-            //Cts.Cancel();
         }
         catch (Exception)
         {
@@ -80,10 +75,5 @@ public class Client : IConnectable
 
         Socket.Send(msgSerialized);
         return true;
-    }
-
-    public void Dispose()
-    {
-        Socket.Dispose();
     }
 }

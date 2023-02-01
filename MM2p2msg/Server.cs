@@ -31,7 +31,6 @@ public class Server : IConnectable
 
     public async Task GetMsg(CancellationToken ctsToken)
     {
-        //IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, Port);
         Socket = CreateSocket();
         Socket.Bind(new IPEndPoint(IPAddress.Parse("127.0.0.1"), Port));
 
@@ -51,7 +50,6 @@ public class Server : IConnectable
         string Saddress = address.ToString();
         Match match = Regex.Match(msg, @":AscConnection");
         List<Contacts> monitoredVar = (List<Contacts>)ServerGuiConnect.GetMonitoredVar();
-        //Console.WriteLine("Dodaje dla: "+msg);
         if (!match.Success)
         {
             foreach (var mVar in monitoredVar)
@@ -59,29 +57,20 @@ public class Server : IConnectable
                 if (mVar.Ip == Saddress)
                 {
                     mVar.Conf.Add(mVar.Name+": "+msg);
-                    //Debug.WriteLine("Dodaje dla: "+mVar.Name);
-                    // using (StreamWriter sw = File.CreateText(@"dupa_kurwa_dupa_jebana1.txt"))
-                    // {
-                    //     sw.WriteLine("Hello World");
-                    // }
                 }
             }
         }
-        else // W takim razie pytanie o polaczenie
+        else 
         {
-            //string name, string ip, int port, bool active, int localPort, Client c, Server s
             foreach (var mVar in monitoredVar)
             {
                 if (mVar.Ip == Saddress)
                 {
                     mVar.Active = true;
-                    // ServerGuiConnect.SetMonitoredVar(monitoredVar);
-                    // Debug.WriteLine("Zmieniono: active dla"+mVar.Name+" stan "+mVar.Active);
                     _updateGui.Set();
                     return;
                 }
             }
-            // W takim razie nieznajomy
             Match mat = Regex.Match(msg, @"(\w):");
             monitoredVar.Add(new Contacts(mat.Groups[1].Value, Saddress, 5000, true, 6600, null, null));
         }
@@ -92,11 +81,10 @@ public class Server : IConnectable
     public async Task MainServerTask(CancellationToken endProgram)
     {
         IPHostEntry host = await Dns.GetHostEntryAsync(Dns.GetHostName());
-        IPAddress localAddress = IPAddress.Parse(UserIp); //host.AddressList[0];
+        IPAddress localAddress = IPAddress.Parse(UserIp); 
 
         var listener = new TcpListener(localAddress, 5000);
         listener.Start();
-        //Console.WriteLine("Wstalo");
         List<Task> tasks = new List<Task>();
         listener.Server.ReceiveTimeout = 100;
         listener.Server.SendTimeout = 100;
@@ -130,12 +118,6 @@ public class Server : IConnectable
             tasks.Add(task);
         }
         listener.Stop();
-        //await Task.WhenAll(tasks);
         Console.WriteLine("Kończe server");
-    }
-
-    public void Dispose()
-    {
-        Socket.Dispose();
     }
 }

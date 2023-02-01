@@ -35,7 +35,3 @@ public class Contacts
 
     public List<string> Conf;
 }
-
-//ja: lkashdfkljasdf : 13:45 
-//ty: fdaslfjkaslkdfj: ..
-//ja: aflkadsjfklas : ..

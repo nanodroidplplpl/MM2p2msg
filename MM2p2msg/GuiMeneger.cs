@@ -9,7 +9,6 @@ public class GuiMeneger
     {
         cardSelection = 0;
         _guis = new List<UserInterface>();
-        //_menu = new ControlUI(name);
         _top = new List<string>();
         Name = name;
         _guis.Add(new UserInterface(new Contacts("Menu", "helo", 124, false, 111, null, null)));
@@ -39,8 +38,6 @@ public class GuiMeneger
         @"/deleteConf", @"/addFriend", @"/removeFriend", @"/exit"};
     
     public List<UserInterface> _guis;
-
-    //private ControlUI? _menu;
 
     public int cardSelection;
 
@@ -95,16 +92,13 @@ public class GuiMeneger
         {
             if (c.Ip == ip)
             {
-                Debug.WriteLine("jestm1 --------------------------------------------------");
-                //Sprawdzenie czy nie ma karty z tym otwartej gdzieś
-                
+
                 int iter = 0;
                 foreach (var gui in _guis)
                 {
                     if (gui.ip == ip)
                     {
                         cardSelection = iter;
-                        Debug.WriteLine("Usuwam-------------------------------------");
                         DeleteConf();
                     }
                     iter++;
@@ -113,7 +107,6 @@ public class GuiMeneger
             }
             jter++;
         }
-        Debug.WriteLine("jestm2 --------------------------------------------------");
         con.RemoveAt(jter);
         MonitorServerGui.SetMonitoredVar(con);
         _guis[0].Output.Clear();
@@ -125,7 +118,6 @@ public class GuiMeneger
     public void DeleteFriend(string msg)
     {
         string pattern = @"/removeFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})";
-        //Debug.WriteLine("jestem tu--------------------------------------------------");
         Match match = Regex.Match(msg, pattern);
 
         if (match.Success)
@@ -190,9 +182,6 @@ public class GuiMeneger
             EnableInput.Reset();
             if (cardSelection == 0)
             {
-                // Object friends = kUser.TryFriendlyContacts(
-                //     result => 
-                //         _guis[0].PrintContacts(result, _top, cardSelection));
                 Console.Clear();
                 _guis[0].Output.Clear();
                 List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
@@ -224,7 +213,6 @@ public class GuiMeneger
             
             UpdateGui.Reset();
             EnableInput.Set();
-            //await Task.Delay(0);
         }
         Console.Clear();
         Console.WriteLine("Koniec");
@@ -249,7 +237,6 @@ public class GuiMeneger
         {
             case SpecialKey.ChangeTab:
                 cardSelection = (cardSelection + 1 > _top.Count - 1) ? 0 : cardSelection + 1;
-                //PrintUi();
                 UpdateGui.Set();
                 return true;
             case SpecialKey.NewConf:
@@ -273,7 +260,6 @@ public class GuiMeneger
                 EnableInput.Set();
                 List<Contacts> kontakt = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
                 kUser.SaveConotactToJsonOnExit(kontakt);
-                // Console.Clear();
                 return true;
                 break;
         }
@@ -291,7 +277,6 @@ public class GuiMeneger
                 return;
             }
             EnableInput.WaitOne();
-            //Console.CursorTop += 5;
             Console.CursorTop = 8;
             Console.CursorLeft = 20;
             Console.CursorLeft = 0;
@@ -320,8 +305,6 @@ public class GuiMeneger
             {
                 if (cardSelection != 0)
                 {
-                    //_guis[cardSelection].SendGui(msg);
-                    //_guis[cardSelection].Output.Add(msg);
                     List<Contacts> temp = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
                     foreach (var friend in temp)
                     {
@@ -335,8 +318,6 @@ public class GuiMeneger
                                 friend.Conf.Add("[HOST NIEAKTYWNY]");
                         }
                     }
-                    //_guis[cardSelection].Update(_top, cardSelection);
-                    //Debug.WriteLine("Dupa 1");
                     EnableInput.Reset();
                     UpdateGui.Set();
                 }
@@ -346,10 +327,6 @@ public class GuiMeneger
                     _guis[cardSelection].Update(_top, cardSelection);
                 }
             }
-            // Console.ForegroundColor = ConsoleColor.White;
-            // Console.BackgroundColor = ConsoleColor.Black;
-            // EnableInput.Reset();
-            //await Task.Delay(0);
             msg = "";
         }
     }
