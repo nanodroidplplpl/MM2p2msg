@@ -30,7 +30,7 @@ public class User : IDisposable
             toJson.Add(c);
             File.WriteAllText(FileName,JsonSerializer.Serialize(toJson));
         }
-        else if ((file = File.ReadAllText(FileName)) == string.Empty)
+        else if ((file = File.ReadAllText(FileName)) == string.Empty && File.Exists(FileName))
         {
             List<Contacts> toJson = new List<Contacts>();
             toJson.Add(c);
@@ -44,17 +44,35 @@ public class User : IDisposable
         }
     }
 
+    public void SaveConotactToJsonOnExit(List<Contacts> contactsList)
+    {
+        foreach (var contact in contactsList)
+        {
+            contact.Active = false;
+            contact.C = null;
+            contact.S = null;
+        }
+        File.WriteAllText(FileName,JsonSerializer.Serialize(contactsList));
+    }
+
     public List<Contacts>? GetContactsFromJson()
     {
         string file;
-        if ((file = File.ReadAllText(FileName)) == string.Empty)
+        if (File.Exists(FileName))
         {
-            throw new FileNotFoundException("No JSON file...");
+            if (!((file = File.ReadAllText(FileName)) == string.Empty))
+            {
+                _obj = JsonSerializer.Deserialize<List<Contacts>>(file);
+                _localServerPort = 5000;
+                return _obj;
+            }
         }
-        
-        _obj = JsonSerializer.Deserialize<List<Contacts>>(file);
-        _localServerPort = 5000;
-        return _obj;
+        else
+        {
+            return new List<Contacts>();
+        }
+
+        return new List<Contacts>();
     }
 
     // Mozna uzyc np getCdontactsFromJson(line -> funkcja(line)) funkcja zapisuje dane do tablicy

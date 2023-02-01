@@ -85,7 +85,7 @@ public class UserInterface
         else
             color = "[offline] ";
         CheckForClones(c);
-        SendGui(color+c.Name+" "+c.Ip+" "+c.Port.ToString());
+        SendGui(color+c.Name+" "+c.Ip);
         Update(top, cardSelection);
     }
 

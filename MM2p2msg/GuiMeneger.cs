@@ -36,7 +36,7 @@ public class GuiMeneger
     }
 
     private static readonly string[] SpecialKeys = {@"/changeTab", @"/newConf",
-        @"/deleteConf", @"/addFriend", @"/deleteFriend", @"/exit"};
+        @"/deleteConf", @"/addFriend", @"/removeFriend", @"/exit"};
     
     public List<UserInterface> _guis;
 
@@ -87,18 +87,64 @@ public class GuiMeneger
         }
         return false;
     }
+    
+    public void RemoveContact(List<Contacts> con, string ip)
+    {
+        int jter = 0;
+        foreach (var c in con)
+        {
+            if (c.Ip == ip)
+            {
+                Debug.WriteLine("jestm1 --------------------------------------------------");
+                //Sprawdzenie czy nie ma karty z tym otwartej gdzieś
+                
+                int iter = 0;
+                foreach (var gui in _guis)
+                {
+                    if (gui.ip == ip)
+                    {
+                        cardSelection = iter;
+                        Debug.WriteLine("Usuwam-------------------------------------");
+                        DeleteConf();
+                    }
+                    iter++;
+                }
+                break;
+            }
+            jter++;
+        }
+        Debug.WriteLine("jestm2 --------------------------------------------------");
+        con.RemoveAt(jter);
+        MonitorServerGui.SetMonitoredVar(con);
+        _guis[0].Output.Clear();
+        _guis[0].Output.Add(".NET chat, Nowy Elegancki Terminal Net");
+        _guis[0].Output.Add("Znajomi");
+        UpdateGui.Set();
+    }
 
-    public void AddFriend()
+    public void DeleteFriend(string msg)
+    {
+        string pattern = @"/removeFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})";
+        //Debug.WriteLine("jestem tu--------------------------------------------------");
+        Match match = Regex.Match(msg, pattern);
+
+        if (match.Success)
+        {
+            string name = match.Groups[1].Value;
+            string ipAddress = match.Groups[2].Value;
+            List<Contacts> con = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
+            RemoveContact(con, ipAddress);
+        }
+    }
+
+    public void AddFriend(string msg)
     {
         EnableInput.Reset();
-        Console.Clear();
         List<Contacts> con = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
-        Console.WriteLine("--------------------------------------");
-        Console.WriteLine("           Dodaj Znajomego            ");
-        Console.Write("Podaj nazwisko znajomego: ");
-        string FriendNick = Console.ReadLine();
-        Console.Write("Podaj IP znajomego: ");
-        string? friendIp = Console.ReadLine();
+        string pattern = @"/addFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})";
+        Match match = Regex.Match(msg, pattern);
+        string FriendNick = match.Groups[1].Value;
+        string? friendIp = match.Groups[2].Value;
         Match s = Regex.Match(friendIp,@"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$");
         if (!CheckIpClones(con, friendIp) && s.Success)
         {
@@ -197,6 +243,7 @@ public class GuiMeneger
     }
     public bool CheckForSpecialKeys(string msg, CancellationTokenSource endProgram)
     {
+        _guis[0].Output.Clear();
         switch (FindSpecialKey(msg))
         {
             case SpecialKey.ChangeTab:
@@ -211,7 +258,11 @@ public class GuiMeneger
                 if (cardSelection != 0) DeleteConf();
                 return true;
             case SpecialKey.AddFriend:
-                AddFriend();
+                AddFriend(msg);
+                return true;
+            case SpecialKey.DeleteFriend:
+                DeleteFriend(msg);
+                EnableInput.Set();
                 return true;
             case SpecialKey.Exit:
                 endProgram.Cancel(); 
@@ -219,6 +270,8 @@ public class GuiMeneger
                 kUser.SaveConf(kontakty);
                 UpdateGui.Set();
                 EnableInput.Set();
+                List<Contacts> kontakt = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
+                kUser.SaveConotactToJsonOnExit(kontakt);
                 // Console.Clear();
                 return true;
                 break;

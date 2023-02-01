@@ -28,9 +28,16 @@ internal abstract class P2Pmsg
         //User.SaveContactToJson("Mati", "26.101.171.76", 5000);
         // Try contact to friends
         List<Contacts>? friends = kUser.GetContactsFromJson();
-        friends = await kUser.TryFriendlyContacts(
-            result => 
-                guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
+        if (friends.Count != 0)
+        {
+            friends = await kUser.TryFriendlyContacts(
+                result => 
+                    guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
+        }
+        else
+        {
+            guiMeneger._guis[0].Update(guiMeneger._top, guiMeneger.cardSelection);
+        }
         friends = kUser.ReadFrom(friends);
         // Console.WriteLine("Dupa 1");
         MonitorServerGui monitorServerGui = new MonitorServerGui(friends); 
