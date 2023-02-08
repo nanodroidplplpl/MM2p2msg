@@ -63,7 +63,7 @@ public class Server : IConnectable
         }
         else 
         {
-            Match ma = Regex.Match(msg, @"-(\d+)");
+            Match ma = Regex.Match(msg, @":(\d+)");
             foreach (var mVar in monitoredVar)
             {
                 if (mVar.Ip == Saddress && mVar.Port == int.Parse(ma.Groups[0].Value))

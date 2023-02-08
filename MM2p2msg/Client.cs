@@ -46,7 +46,7 @@ public class Client : IConnectable
             return Contact;
         }
         Contact.Active = true;
-        byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection-"+myPort);
+        byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection:"+myPort);
         Debug.WriteLine("Wysylam probe polaczenia do Mati");
         SocketAsyncEventArgs args = new SocketAsyncEventArgs();
         args.RemoteEndPoint = endPoint;
