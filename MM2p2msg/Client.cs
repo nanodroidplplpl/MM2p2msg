@@ -23,7 +23,7 @@ public class Client : IConnectable
         return new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
     }
 
-    public async Task<Contacts> TryConnect()
+    public async Task<Contacts> TryConnect(int myPort)
     {
         Socket = CreateSocket();
         Socket.SendTimeout = 1;
@@ -46,7 +46,7 @@ public class Client : IConnectable
             return Contact;
         }
         Contact.Active = true;
-        byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection");
+        byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection-"+myPort);
         Debug.WriteLine("Wysylam probe polaczenia do Mati");
         SocketAsyncEventArgs args = new SocketAsyncEventArgs();
         args.RemoteEndPoint = endPoint;

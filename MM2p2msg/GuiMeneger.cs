@@ -55,11 +55,11 @@ public class GuiMeneger
     
     public void AddNewConf(string msg)
     {
-        Match match = Regex.Match(msg, @"/newConf (\w+) (\d+\.\d+\.\d+\.\d+)");
+        Match match = Regex.Match(msg, @"/newConf (\w+) (\d+\.\d+\.\d+\.\d+) (\d+)");
         List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
         foreach (var friend in friends)
         {
-            if (match.Groups[1].Value == friend.Name && match.Groups[2].Value == friend.Ip && friend.Active)
+            if (match.Groups[1].Value == friend.Name && match.Groups[2].Value == friend.Ip && friend.Active && int.Parse(match.Groups[3].Value) == friend.Port)
             {
                 UserInterface ui = new UserInterface(friend);
                 _guis.Add(ui);
@@ -85,12 +85,12 @@ public class GuiMeneger
         return false;
     }
     
-    public void RemoveContact(List<Contacts> con, string ip)
+    public void RemoveContact(List<Contacts> con, string ip, int port)
     {
         int jter = 0;
         foreach (var c in con)
         {
-            if (c.Ip == ip)
+            if (c.Ip == ip && c.Port == port)
             {
 
                 int iter = 0;
@@ -117,15 +117,16 @@ public class GuiMeneger
 
     public void DeleteFriend(string msg)
     {
-        string pattern = @"/removeFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})";
+        string pattern = @"/removeFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(\d+)";
         Match match = Regex.Match(msg, pattern);
 
         if (match.Success)
         {
             string name = match.Groups[1].Value;
             string ipAddress = match.Groups[2].Value;
+            int conPort = int.Parse(match.Groups[3].Value);
             List<Contacts> con = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
-            RemoveContact(con, ipAddress);
+            RemoveContact(con, ipAddress, conPort);
         }
     }
 
@@ -167,7 +168,7 @@ public class GuiMeneger
     {
         foreach (var v in con)
         {
-            if (v.Ip == _guis[cardSelection].ip)
+            if (v.Ip == _guis[cardSelection].ip && v.Port == _guis[cardSelection].port)
             {
                 return v.Conf;
             }
@@ -314,7 +315,7 @@ public class GuiMeneger
                         if (friend.Name == _guis[cardSelection].Name && friend.Ip == _guis[cardSelection].ip)
                         {
                             Client client = new Client(friend, usrName);
-                            friend.Active = client.SendMessage(msg);
+                            friend.Active = client.SendMessage(usrName+": "+msg);
                             if (friend.Active)
                                 friend.Conf.Add(msg);
                             else

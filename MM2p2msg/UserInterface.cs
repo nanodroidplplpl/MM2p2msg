@@ -13,6 +13,8 @@ public class UserInterface
     public string ip { get; set; }
 
     public string Name;
+    
+    public int port { get; set; }
 
     public UserInterface(Contacts friend)
     {
@@ -22,6 +24,7 @@ public class UserInterface
         Name = friend.Name;
         ListSize = 2;
         ListMaxSize = 7;
+        port = friend.Port;
         Update(null, null);
     }
 

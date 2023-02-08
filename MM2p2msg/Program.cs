@@ -17,7 +17,7 @@ internal abstract class P2Pmsg
         UserName = Console.ReadLine();
         Console.Write("Podaj ip swojego komputera: ");
         UserIP = Console.ReadLine();
-        Console.Write("Czy chcialbys zmienic nr portu, domyslnie 5000: T/n");
+        Console.Write("Czy chcialbys zmienic nr portu, domyslnie 5000 T/n: ");
         if (Console.ReadLine() == "T")
         {
             Console.Write("Podaj nr portu: ");
@@ -32,7 +32,7 @@ internal abstract class P2Pmsg
         {
             friends = await kUser.TryFriendlyContacts(
                 result => 
-                    guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection));
+                    guiMeneger._guis[0].PrintContacts(result, guiMeneger._top, guiMeneger.cardSelection), UserPort);
         }
         else
         {

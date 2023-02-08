@@ -75,7 +75,7 @@ public class User
         return new List<Contacts>();
     }
 
-    public async Task<List<Contacts>> TryFriendlyContacts(Action<Contacts> newContact)
+    public async Task<List<Contacts>> TryFriendlyContacts(Action<Contacts> newContact, int myPort)
     {
         List<Task<Contacts>> tryes = new List<Task<Contacts>>();
         List<Contacts> output = new List<Contacts>();
@@ -85,7 +85,7 @@ public class User
             {
                 _clientPort++;
                 o.C = new Client(o, usrName){TempPort = _clientPort};
-                tryes.Add(o.C.TryConnect());
+                tryes.Add(o.C.TryConnect(myPort));
                 _localServerPort++;
                 iter++;
             }

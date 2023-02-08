@@ -4,16 +4,14 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="dodanie wyświetlania nr portów znajomych">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Client.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/MonitorServerGui.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/MonitorServerGui.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +39,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/GuiMeneger.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/UserInterface.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -105,7 +105,7 @@
       <workItem from="1675111810104" duration="1331000" />
       <workItem from="1675183070563" duration="2418000" />
       <workItem from="1675684309117" duration="669000" />
-      <workItem from="1675776114210" duration="6710000" />
+      <workItem from="1675776114210" duration="9212000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1674567093708</created>
@@ -296,7 +296,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675220356818</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Dodanie opcji zmienienia nr portu u znajomego">
+      <created>1675884238783</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1675884238783</updated>
+    </task>
+    <task id="LOCAL-00029" summary="dodanie wyświetlania nr portów znajomych">
+      <created>1675884300074</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1675884300074</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +320,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Init commit" />
     <MESSAGE value="Added support for a JSON file that saves and reads the contact list." />
     <MESSAGE value="UI" />
     <MESSAGE value="zmiana pomiędzy kartami działa dobrze" />
@@ -330,7 +343,9 @@
     <MESSAGE value="ddd" />
     <MESSAGE value="do WYsłanie do Profesora" />
     <MESSAGE value="do drukuj" />
-    <option name="LAST_COMMIT_MESSAGE" value="do drukuj" />
+    <MESSAGE value="Dodanie opcji zmienienia nr portu u znajomego" />
+    <MESSAGE value="dodanie wyświetlania nr portów znajomych" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie wyświetlania nr portów znajomych" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
