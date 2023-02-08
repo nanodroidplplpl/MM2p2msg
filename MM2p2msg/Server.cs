@@ -68,7 +68,7 @@ public class Server : IConnectable
             Match ma = Regex.Match(msg, @":(\d+)");
             foreach (var mVar in monitoredVar)
             {
-                if (mVar.Ip == Saddress && mVar.Port == int.Parse(ma.Groups[0].Value))
+                if (mVar.Ip == Saddress && mVar.Port == int.Parse(ma.Groups[1].Value))
                 {
                     mVar.Active = true;
                     ServerGuiConnect.SetMonitoredVar(monitoredVar);
@@ -77,7 +77,7 @@ public class Server : IConnectable
                 }
             }
             Match mat = Regex.Match(msg, @"(\w+):");
-            monitoredVar.Add(new Contacts(mat.Groups[1].Value, Saddress, int.Parse(ma.Groups[0].Value), true, 6600, null, null));
+            monitoredVar.Add(new Contacts(mat.Groups[1].Value, Saddress, int.Parse(ma.Groups[1].Value), true, 6600, null, null));
         }
         ServerGuiConnect.SetMonitoredVar(monitoredVar);
         _updateGui.Set();
