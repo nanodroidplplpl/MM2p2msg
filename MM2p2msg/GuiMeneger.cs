@@ -5,7 +5,7 @@ namespace MM2p2msg;
 
 public class GuiMeneger
 {
-    public GuiMeneger(string name, AutoResetEvent updateGui, AutoResetEvent enableInput, string usrName, User kUser)
+    public GuiMeneger(string name, AutoResetEvent updateGui, AutoResetEvent enableInput, string usrName, User kUser, int myPort)
     {
         cardSelection = 0;
         _guis = new List<UserInterface>();
@@ -19,9 +19,12 @@ public class GuiMeneger
         this.usrName = usrName;
         this.kUser = kUser;
         EnableInput = enableInput;
+        this.myPort = myPort;
     }
 
     private User kUser;
+
+    private int myPort;
     
     public enum SpecialKey
     {
@@ -130,7 +133,7 @@ public class GuiMeneger
         }
     }
 
-    public void AddFriend(string msg)
+    public async void AddFriend(string msg)
     {
         EnableInput.Reset();
         List<Contacts> con = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
@@ -144,8 +147,10 @@ public class GuiMeneger
         if (!CheckIpClones(con, friendIp) && s.Success)
         {
             Contacts c = new Contacts(FriendNick, friendIp, port, false, 660, null, null);
+            c.C = new Client(c, usrName);
+            c = await c.C.TryConnect(myPort);
             con.Add(c);
-            kUser.SaveContactToJson(FriendNick, friendIp, 5000);
+            kUser.SaveContactToJson(FriendNick, friendIp, port);
             MonitorServerGui.SetMonitoredVar(con);
         }
         Console.Clear();

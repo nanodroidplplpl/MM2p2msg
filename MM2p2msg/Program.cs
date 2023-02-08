@@ -26,7 +26,7 @@ internal abstract class P2Pmsg
         var endProgramToken = _endProgram.Token;
         User kUser = new User(UserName);
         _enableInput.Set();
-        GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, _enableInput, UserName, kUser);
+        GuiMeneger guiMeneger = new GuiMeneger(UserName, _updateGui, _enableInput, UserName, kUser, UserPort);
         List<Contacts>? friends = kUser.GetContactsFromJson();
         if (friends.Count != 0)
         {
