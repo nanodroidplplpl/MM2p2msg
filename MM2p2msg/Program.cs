@@ -40,7 +40,7 @@ internal abstract class P2Pmsg
         }
         friends = kUser.ReadFrom(friends);
         MonitorServerGui monitorServerGui = new MonitorServerGui(friends);
-        Server mainServer = new Server(UserPort, monitorServerGui, _updateGui, UserIP);
+        Server mainServer = new Server(UserPort, monitorServerGui, _updateGui, UserIP, UserPort);
         guiMeneger.MonitorServerGui = monitorServerGui;
         Task mainServerTask = mainServer.MainServerTask(endProgramToken);
         Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram); });

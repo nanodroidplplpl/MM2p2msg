@@ -11,7 +11,7 @@ public class GuiMeneger
         _guis = new List<UserInterface>();
         _top = new List<string>();
         Name = name;
-        _guis.Add(new UserInterface(new Contacts("Menu", "helo", 124, false, 111, null, null)));
+        _guis.Add(new UserInterface(new Contacts("Menu", "helo", 0, false, 0, null, null)));
         _top.Add("Menu");
         _guis[0].Output.Add(".NET chat, Nowy Elegancki Terminal Net");
         _guis[0].Output.Add("Znajomi");

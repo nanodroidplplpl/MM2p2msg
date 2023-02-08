@@ -84,7 +84,7 @@ public class User
             foreach (var o in _obj)
             {
                 _clientPort++;
-                o.C = new Client(o, usrName){TempPort = _clientPort};
+                o.C = new Client(o, usrName);//{TempPort = _clientPort};
                 tryes.Add(o.C.TryConnect(myPort));
                 _localServerPort++;
                 iter++;

@@ -9,7 +9,7 @@ public class Client : IConnectable
 {
     private Contacts Contact { get; set; }
     public Socket Socket { get; set; } = null!;
-    public int TempPort = 5050;
+    //public int TempPort = 5050;
     public string usrName;
 
     public Client(Contacts contact, string usrName)

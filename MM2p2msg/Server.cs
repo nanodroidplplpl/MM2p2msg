@@ -16,13 +16,15 @@ public class Server : IConnectable
     public MonitorServerGui ServerGuiConnect;
     private AutoResetEvent _updateGui;
     private string UserIp;
+    private int UserPort;
 
-    public Server(int port, MonitorServerGui serverGuiConnect, AutoResetEvent updateGui, string userIp)
+    public Server(int port, MonitorServerGui serverGuiConnect, AutoResetEvent updateGui, string userIp, int userPort)
     {
         Port = port;
         ServerGuiConnect = serverGuiConnect;
         _updateGui = updateGui;
         UserIp = userIp;
+        UserPort = userPort;
     }
     public Socket CreateSocket()
     {
@@ -53,8 +55,8 @@ public class Server : IConnectable
         if (!match.Success)
         {
             Match mat = Regex.Match(msg, @"(\w+):");
-            Debug.WriteLine(msg);
-            Debug.WriteLine("Wiadomosc od: "+mat.Groups[1].Value);
+            //Debug.WriteLine(msg);
+            //Debug.WriteLine("Wiadomosc od: "+mat.Groups[1].Value);
             foreach (var mVar in monitoredVar)
             {
                 if (mVar.Ip == Saddress && mVar.Name == mat.Groups[1].Value)
@@ -77,7 +79,7 @@ public class Server : IConnectable
                 }
             }
             Match mat = Regex.Match(msg, @"(\w+):");
-            monitoredVar.Add(new Contacts(mat.Groups[1].Value, Saddress, int.Parse(ma.Groups[1].Value), true, 6600, null, null));
+            monitoredVar.Add(new Contacts(mat.Groups[1].Value, Saddress, int.Parse(ma.Groups[1].Value), true, 0, null, null));
         }
         ServerGuiConnect.SetMonitoredVar(monitoredVar);
         _updateGui.Set();
@@ -88,7 +90,7 @@ public class Server : IConnectable
         IPHostEntry host = await Dns.GetHostEntryAsync(Dns.GetHostName());
         IPAddress localAddress = IPAddress.Parse(UserIp); 
 
-        var listener = new TcpListener(localAddress, 5000);
+        var listener = new TcpListener(localAddress, UserPort);
         listener.Start();
         List<Task> tasks = new List<Task>();
         listener.Server.ReceiveTimeout = 100;
@@ -124,6 +126,6 @@ public class Server : IConnectable
             tasks.Add(task);
         }
         listener.Stop();
-        Console.WriteLine("Kończe server");
+        //Console.WriteLine("Kończe server");
     }
 }
