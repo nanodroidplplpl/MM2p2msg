@@ -317,7 +317,7 @@ public class GuiMeneger
                             Client client = new Client(friend, usrName);
                             friend.Active = client.SendMessage(usrName+": "+msg);
                             if (friend.Active)
-                                friend.Conf.Add(msg);
+                                friend.Conf.Add(usrName+": "+msg);
                             else
                                 friend.Conf.Add("[HOST NIEAKTYWNY]");
                         }

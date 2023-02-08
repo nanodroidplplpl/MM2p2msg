@@ -4,14 +4,10 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="dodanie wyświetlania nr portów znajomych">
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="poprawiony port">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Client.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/UserInterface.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +27,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2092594986cef463403359ef7a2b70c093702cde2d09da41faa694648726f8c/ThreadPoolWorkQueue.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5bdc1f468ff811ead6ce2a42751fa64e712edcec0b8fad57be2ce014b85e5d/PortableThreadPool.WorkerThread.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/67cc3911dd203a288c1fa955bec74e281d938be3b988330c2aac7c6ce63340/DataMemberAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7a1ad32abaee44480b66c2c1fcee9628cca92a4cd272eced5781564201180/Number.Parsing.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/87c1dd833e1c3b867920d1248f993b6cc3f4be2881fb202ce7735eccf82fe3/Socket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aacf6151870041ec50684429cbd3c1582d8b1ada7b65a7a9482fec6e935a55/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ad3f3bedb76a7b149d8e108df9723fcfd253c92c6f9c4523d669b3eb18e11c9/WaitHandle.cs" root0="SKIP_HIGHLIGHTING" />
@@ -38,6 +35,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c1da7b6c7c71a954fe3eb2531c6476711b3e6d93a8d76795386d326bb9dbc/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/GuiMeneger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/UserInterface.cs" root0="SKIP_HIGHLIGHTING" />
@@ -105,7 +104,7 @@
       <workItem from="1675111810104" duration="1331000" />
       <workItem from="1675183070563" duration="2418000" />
       <workItem from="1675684309117" duration="669000" />
-      <workItem from="1675776114210" duration="9212000" />
+      <workItem from="1675776114210" duration="10158000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1674567093708</created>
@@ -310,7 +309,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675884300074</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Dodanie opcji zmiany nr Portu">
+      <created>1675886500292</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1675886500292</updated>
+    </task>
+    <task id="LOCAL-00031" summary="poprawiony port">
+      <created>1675886810283</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1675886810283</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,8 +333,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added support for a JSON file that saves and reads the contact list." />
-    <MESSAGE value="UI" />
     <MESSAGE value="zmiana pomiędzy kartami działa dobrze" />
     <MESSAGE value="poprawione changeTab" />
     <MESSAGE value="Poprawienie UI" />
@@ -345,7 +356,9 @@
     <MESSAGE value="do drukuj" />
     <MESSAGE value="Dodanie opcji zmienienia nr portu u znajomego" />
     <MESSAGE value="dodanie wyświetlania nr portów znajomych" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodanie wyświetlania nr portów znajomych" />
+    <MESSAGE value="Dodanie opcji zmiany nr Portu" />
+    <MESSAGE value="poprawiony port" />
+    <option name="LAST_COMMIT_MESSAGE" value="poprawiony port" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

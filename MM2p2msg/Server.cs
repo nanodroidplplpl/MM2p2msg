@@ -53,9 +53,11 @@ public class Server : IConnectable
         if (!match.Success)
         {
             Match mat = Regex.Match(msg, @"(\w+):");
+            Debug.WriteLine(msg);
+            Debug.WriteLine("Wiadomosc od: "+mat.Groups[1].Value);
             foreach (var mVar in monitoredVar)
             {
-                if (mVar.Ip == Saddress && mVar.Name == mat.Groups[0].Value)
+                if (mVar.Ip == Saddress && mVar.Name == mat.Groups[1].Value)
                 {
                     mVar.Conf.Add(msg);
                 }
