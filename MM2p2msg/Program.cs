@@ -8,6 +8,7 @@ internal abstract class P2Pmsg
     private static CancellationTokenSource _endProgram = new CancellationTokenSource();
     private static string UserName;
     private static string UserIP;
+    private static int UserPort = 5000;
 
     static async Task Main()
     {
@@ -16,6 +17,12 @@ internal abstract class P2Pmsg
         UserName = Console.ReadLine();
         Console.Write("Podaj ip swojego komputera: ");
         UserIP = Console.ReadLine();
+        Console.Write("Czy chcialbys zmienic nr portu, domyslnie 5000: T/n");
+        if (Console.ReadLine() == "T")
+        {
+            Console.Write("Podaj nr portu: ");
+            UserPort = int.Parse(Console.ReadLine()!);
+        }
         var endProgramToken = _endProgram.Token;
         User kUser = new User(UserName);
         _enableInput.Set();
@@ -33,7 +40,7 @@ internal abstract class P2Pmsg
         }
         friends = kUser.ReadFrom(friends);
         MonitorServerGui monitorServerGui = new MonitorServerGui(friends);
-        Server mainServer = new Server(5000, monitorServerGui, _updateGui, UserIP);
+        Server mainServer = new Server(UserPort, monitorServerGui, _updateGui, UserIP);
         guiMeneger.MonitorServerGui = monitorServerGui;
         Task mainServerTask = mainServer.MainServerTask(endProgramToken);
         Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram); });

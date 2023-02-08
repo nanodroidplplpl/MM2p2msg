@@ -9,7 +9,7 @@ public class MonitorServerGui : Monitor<List<Contacts>>
         DataAcces.WaitOne();
         try
         {
-            return MonitoredVar;
+            return MonitoredVar.ToList();
         }
         finally
         {

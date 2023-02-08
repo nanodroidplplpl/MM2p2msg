@@ -45,7 +45,7 @@ public class Server : IConnectable
         }
     }
 
-    public void MakeSomethingWithMsg(IPAddress address, string msg)
+    public void MakeSomethingWithMsg(IPAddress address, string msg, int port)
     {
         string Saddress = address.ToString();
         Match match = Regex.Match(msg, @":AscConnection");
@@ -67,12 +67,13 @@ public class Server : IConnectable
                 if (mVar.Ip == Saddress)
                 {
                     mVar.Active = true;
+                    ServerGuiConnect.SetMonitoredVar(monitoredVar);
                     _updateGui.Set();
                     return;
                 }
             }
             Match mat = Regex.Match(msg, @"(\w):");
-            monitoredVar.Add(new Contacts(mat.Groups[1].Value, Saddress, 5000, true, 6600, null, null));
+            monitoredVar.Add(new Contacts(mat.Groups[1].Value, Saddress, port, true, 6600, null, null));
         }
         ServerGuiConnect.SetMonitoredVar(monitoredVar);
         _updateGui.Set();
@@ -100,6 +101,7 @@ public class Server : IConnectable
             {
                 var stream = client.GetStream();
                 var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
+                string portCl = ((IPEndPoint)client.Client.RemoteEndPoint)?.Port.ToString();
                 var buffer = new byte[1024];
                 int bytesRead;
                 while (!endProgram.IsCancellationRequested)
@@ -112,7 +114,7 @@ public class Server : IConnectable
                     bytesRead = stream.Read(buffer, 0, buffer.Length);
                     var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                     Debug.WriteLine("Otrzymano ip: " + message);
-                    if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message);
+                    if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message, int.Parse(portCl));
                 }
             }, endProgram);
             tasks.Add(task);

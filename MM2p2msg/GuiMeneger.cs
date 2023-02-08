@@ -133,14 +133,16 @@ public class GuiMeneger
     {
         EnableInput.Reset();
         List<Contacts> con = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
-        string pattern = @"/addFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})";
+        //string pattern = @"/addFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})";
+        string pattern = @"/addFriend\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(\d+)";
         Match match = Regex.Match(msg, pattern);
         string FriendNick = match.Groups[1].Value;
         string? friendIp = match.Groups[2].Value;
+        int port = int.Parse(match.Groups[3].Value);
         Match s = Regex.Match(friendIp,@"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$");
         if (!CheckIpClones(con, friendIp) && s.Success)
         {
-            Contacts c = new Contacts(FriendNick, friendIp, 5000, false, 660, null, null);
+            Contacts c = new Contacts(FriendNick, friendIp, port, false, 660, null, null);
             con.Add(c);
             kUser.SaveContactToJson(FriendNick, friendIp, 5000);
             MonitorServerGui.SetMonitoredVar(con);
@@ -244,6 +246,7 @@ public class GuiMeneger
                 return true;
             case SpecialKey.DeleteConf:
                 if (cardSelection != 0) DeleteConf();
+                else EnableInput.Set();
                 return true;
             case SpecialKey.AddFriend:
                 AddFriend(msg);
