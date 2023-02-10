@@ -25,40 +25,42 @@ public class Client : IConnectable
 
     public async Task<Contacts> TryConnect(int myPort)
     {
-        Socket = CreateSocket();
-        Socket.SendTimeout = 1;
-        Socket.ReceiveTimeout = 1;
         IPAddress ip = IPAddress.Parse(Contact.Ip);
         IPEndPoint endPoint = new IPEndPoint(ip, Contact.Port);
-
+    
         CancellationTokenSource ctsClient = new CancellationTokenSource();
         CancellationToken ctClient = ctsClient.Token;
         ctsClient.CancelAfter(1500);
-        
+    
         try
         {
-            await Socket.ConnectAsync(endPoint, ctClient);
-            Contact.Active = true;
+            using (var socket = CreateSocket())
+            {
+                socket.SendTimeout = 1;
+                socket.ReceiveTimeout = 1;
+                await socket.ConnectAsync(endPoint, ctClient);
+                Contact.Active = true;
+
+                byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection:"+myPort);
+                Debug.WriteLine("Wysylam probe polaczenia do Mati");
+                SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+                args.RemoteEndPoint = endPoint;
+                args.SetBuffer(buffer, 0, buffer.Length);
+                socket.SendAsync(args);
+            }
         }
         catch (Exception)
         {
             Contact.Active = false;
             return Contact;
         }
-        Contact.Active = true;
-        byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection:"+myPort);
-        Debug.WriteLine("Wysylam probe polaczenia do Mati");
-        SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-        args.RemoteEndPoint = endPoint;
-        args.SetBuffer(buffer, 0, buffer.Length);
-        Socket.SendAsync(args);
+
         return Contact;
     }
 
     public bool SendMessage(string msg)
     {
         byte[] msgSerialized = Encoding.ASCII.GetBytes(msg);
-        Socket = CreateSocket();
         IPAddress ip = IPAddress.Parse(Contact.Ip);
         IPEndPoint endPoint = new IPEndPoint(ip, Contact.Port);
         CancellationTokenSource ctsClient = new CancellationTokenSource();
@@ -66,14 +68,16 @@ public class Client : IConnectable
         ctsClient.CancelAfter(4000);
         try
         {
-            Socket.Connect(endPoint);
+            using (var socket = CreateSocket())
+            {
+                socket.Connect(endPoint);
+                socket.Send(msgSerialized);
+            }
         }
         catch (Exception)
         {
             return false;
         }
-
-        Socket.Send(msgSerialized);
         return true;
     }
 }

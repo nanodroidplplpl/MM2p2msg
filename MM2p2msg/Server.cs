@@ -102,30 +102,36 @@ public class Server : IConnectable
                 Thread.Sleep(100);
                 continue;
             }
-            var client = listener.AcceptTcpClient();
-            var task = Task.Factory.StartNew(() =>
+            //var client = listener.AcceptTcpClient();
+            using (var client = listener.AcceptTcpClient())
             {
-                var stream = client.GetStream();
-                var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
-                string portCl = ((IPEndPoint)client.Client.RemoteEndPoint)?.Port.ToString();
-                var buffer = new byte[1024];
-                int bytesRead;
-                while (!endProgram.IsCancellationRequested)
+                var task = Task.Factory.StartNew(() =>
                 {
-                    if (!stream.DataAvailable)
+                    //var stream = client.GetStream();
+                    using (var stream = client.GetStream())
                     {
-                        Thread.Sleep(100);
-                        continue;
+                        var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
+                        string portCl = ((IPEndPoint)client.Client.RemoteEndPoint)?.Port.ToString();
+                        var buffer = new byte[1024];
+                        int bytesRead;
+                        while (!endProgram.IsCancellationRequested)
+                        {
+                            if (!stream.DataAvailable)
+                            {
+                                Thread.Sleep(100);
+                                continue;
+                            }
+                            bytesRead = stream.Read(buffer, 0, buffer.Length);
+                            var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            Debug.WriteLine("Otrzymano ip: " + message);
+                            if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message, int.Parse(portCl));
+                        }
                     }
-                    bytesRead = stream.Read(buffer, 0, buffer.Length);
-                    var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                    Debug.WriteLine("Otrzymano ip: " + message);
-                    if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message, int.Parse(portCl));
-                }
-            }, endProgram);
-            tasks.Add(task);
+                }, endProgram);
+                tasks.Add(task);
+            }
         }
-        listener.Stop();
+        //listener.Stop();
         //Console.WriteLine("Kończe server");
     }
 }
