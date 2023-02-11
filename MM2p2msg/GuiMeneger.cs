@@ -34,11 +34,12 @@ public class GuiMeneger
         AddFriend,
         DeleteFriend,
         Exit,
+        Refresh,
         Wrong
     }
 
     private static readonly string[] SpecialKeys = {@"/changeTab", @"/newConf",
-        @"/deleteConf", @"/addFriend", @"/removeFriend", @"/exit"};
+        @"/deleteConf", @"/addFriend", @"/removeFriend", @"/exit", @"/refresh"};
     
     public List<UserInterface> _guis;
 
@@ -200,8 +201,8 @@ public class GuiMeneger
                 Console.CursorTop = 8;
                 Console.CursorLeft = 20;
                 Console.CursorLeft = 0;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.BackgroundColor = ConsoleColor.White;
+                //Console.ForegroundColor = ConsoleColor.Black;
+                //Console.BackgroundColor = ConsoleColor.White;
                 Console.Write("->");
                 for (int i = Console.CursorLeft; i < 50; i++)
                 {
@@ -226,6 +227,29 @@ public class GuiMeneger
         Console.WriteLine("Koniec");
     }
 
+    public async Task Refresh(User kUser)
+    {
+        if (cardSelection == 0)
+        {
+            EnableInput.Reset();
+            Console.Clear();
+            List<Contacts>? friends = kUser.GetContactsFromJson();
+            if (friends.Count != 0)
+            {
+                friends = await kUser.TryFriendlyContacts(
+                    result => 
+                        _guis[0].PrintContacts(result, _top, cardSelection), myPort);
+            }
+            else
+            {
+                _guis[0].Update(_top, cardSelection);
+            }
+            EnableInput.Set();
+            Console.CursorTop = 8;
+            Console.CursorLeft = 5;
+        }
+    }
+
     public SpecialKey FindSpecialKey(string msg)
     {
         int iter = 0;
@@ -238,7 +262,8 @@ public class GuiMeneger
         }
         return SpecialKey.Wrong;
     }
-    public bool CheckForSpecialKeys(string msg, CancellationTokenSource endProgram)
+
+    public bool CheckForSpecialKeys(string msg, CancellationTokenSource endProgram, User kUser)
     {
         _guis[0].Output.Clear();
         switch (FindSpecialKey(msg))
@@ -270,13 +295,15 @@ public class GuiMeneger
                 List<Contacts> kontakt = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
                 kUser.SaveConotactToJsonOnExit(kontakt);
                 return true;
+            case SpecialKey.Refresh:
+                Refresh(kUser);
                 break;
         }
 
         return false;
     }
     
-    public void GetUserInput(CancellationToken _endProgram, CancellationTokenSource endProgram)
+    public void GetUserInput(CancellationToken _endProgram, CancellationTokenSource endProgram, User kUser)
     {
         while (true)
         {
@@ -289,8 +316,8 @@ public class GuiMeneger
             Console.CursorTop = 8;
             Console.CursorLeft = 20;
             Console.CursorLeft = 0;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.Black;
+            //Console.BackgroundColor = ConsoleColor.White;
             Console.Write("->");
             for (int i = Console.CursorLeft; i < 50; i++)
             {
@@ -310,7 +337,7 @@ public class GuiMeneger
                 }
 
             Console.CursorLeft = 0;
-            if (!CheckForSpecialKeys(msg, endProgram))
+            if (!CheckForSpecialKeys(msg, endProgram, kUser))
             {
                 if (cardSelection != 0)
                 {

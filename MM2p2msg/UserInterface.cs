@@ -36,17 +36,17 @@ public class UserInterface
             {
                 if (iter == cardSelection)
                 {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.Write("["+t+"] ");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.BackgroundColor = ConsoleColor.Black;
+                    //Console.ForegroundColor = ConsoleColor.Black;
+                    //Console.BackgroundColor = ConsoleColor.White;
+                    Console.Write("[*"+t+"*] ");
+                    //Console.ForegroundColor = ConsoleColor.White;
+                    //Console.BackgroundColor = ConsoleColor.Black;
                 }
                 else
                 {
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.BackgroundColor = ConsoleColor.Black;
+                        //Console.ForegroundColor = ConsoleColor.White;
+                        //Console.BackgroundColor = ConsoleColor.Black;
                         Console.Write("["+t+"] ");
                     }
                 }

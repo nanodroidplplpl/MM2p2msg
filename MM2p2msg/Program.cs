@@ -43,9 +43,10 @@ internal abstract class P2Pmsg
         Server mainServer = new Server(UserPort, monitorServerGui, _updateGui, UserIP, UserPort);
         guiMeneger.MonitorServerGui = monitorServerGui;
         Task mainServerTask = mainServer.MainServerTask(endProgramToken);
-        Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram); });
+        Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram, kUser); });
         Task printUi = Task.Run(() => { guiMeneger.PrintUi(endProgramToken); });
         await Task.WhenAll(mainServerTask, printUi, guiMenegerTask);
+        monitorServerGui.Dispose();
         Console.Clear();
         Console.WriteLine("----------------------------------------------------------");
         Console.WriteLine("| Dziekujemy za kozystanie z naszego retro komunikatora! |");
