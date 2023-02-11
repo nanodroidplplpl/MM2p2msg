@@ -101,7 +101,7 @@ public class GuiMeneger
                 int iter = 0;
                 foreach (var gui in _guis)
                 {
-                    if (gui.ip == ip)
+                    if (gui.ip == ip && port == gui.port)
                     {
                         cardSelection = iter;
                         DeleteConf();
