@@ -81,7 +81,7 @@ public class GuiMeneger
     {
         foreach (var c in con)
         {
-            if (c.Ip == ip && c.Port != port)
+            if (c.Ip == ip && c.Port == port)
             {
                 return true;
             }
