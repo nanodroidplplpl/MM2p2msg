@@ -114,7 +114,8 @@ public class GuiMeneger
                 _guis[0].Output.Clear();
                 _guis[0].Output.Add(".NET chat, Nowy Elegancki Terminal Net");
                 _guis[0].Output.Add("Znajomi");
-                UpdateGui.Set();
+                //UpdateGui.Set();
+                Refresh();
                 break;
             }
             jter++;
