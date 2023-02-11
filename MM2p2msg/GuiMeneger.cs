@@ -108,17 +108,17 @@ public class GuiMeneger
                     }
                     iter++;
                 }
+                con.RemoveAt(jter);
+                MonitorServerGui.SetMonitoredVar(con);
+                kUser.SaveConotactToJsonOnExit(con);
+                _guis[0].Output.Clear();
+                _guis[0].Output.Add(".NET chat, Nowy Elegancki Terminal Net");
+                _guis[0].Output.Add("Znajomi");
+                UpdateGui.Set();
                 break;
             }
             jter++;
         }
-        con.RemoveAt(jter);
-        MonitorServerGui.SetMonitoredVar(con);
-        kUser.SaveConotactToJsonOnExit(con);
-        _guis[0].Output.Clear();
-        _guis[0].Output.Add(".NET chat, Nowy Elegancki Terminal Net");
-        _guis[0].Output.Add("Znajomi");
-        UpdateGui.Set();
     }
 
     public void DeleteFriend(string msg)
