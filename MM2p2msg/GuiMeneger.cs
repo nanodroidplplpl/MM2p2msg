@@ -91,6 +91,7 @@ public class GuiMeneger
     
     public void RemoveContact(List<Contacts> con, string ip, int port)
     {
+        //EnableInput.Reset();
         int jter = 0;
         foreach (var c in con)
         {
@@ -166,9 +167,12 @@ public class GuiMeneger
 
     public void DeleteConf()
     {
-        _top.RemoveAt(cardSelection);
-        cardSelection--;
-        UpdateGui.Set();
+        if (cardSelection != 0)
+        {
+            _top.RemoveAt(cardSelection);
+            cardSelection--;
+            UpdateGui.Set();
+        }
     }
 
     public List<string> FindCorrectPerson(List<Contacts> con)
