@@ -43,7 +43,7 @@ internal abstract class P2Pmsg
         Server mainServer = new Server(UserPort, monitorServerGui, _updateGui, UserIP, UserPort);
         guiMeneger.MonitorServerGui = monitorServerGui;
         Task mainServerTask = mainServer.MainServerTask(endProgramToken);
-        Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram, kUser); });
+        Task guiMenegerTask = Task.Run(() => { guiMeneger.GetUserInput(endProgramToken, _endProgram); });
         Task printUi = Task.Run(() => { guiMeneger.PrintUi(endProgramToken); });
         await Task.WhenAll(mainServerTask, printUi, guiMenegerTask);
         monitorServerGui.Dispose();

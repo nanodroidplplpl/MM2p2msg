@@ -113,6 +113,7 @@ public class GuiMeneger
         }
         con.RemoveAt(jter);
         MonitorServerGui.SetMonitoredVar(con);
+        kUser.SaveConotactToJsonOnExit(con);
         _guis[0].Output.Clear();
         _guis[0].Output.Add(".NET chat, Nowy Elegancki Terminal Net");
         _guis[0].Output.Add("Znajomi");
@@ -194,6 +195,7 @@ public class GuiMeneger
                 Console.Clear();
                 _guis[0].Output.Clear();
                 List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
+                kUser.SaveConotactToJsonOnExit(friends);
                 foreach (var friend in friends)
                 {
                     _guis[0].PrintContacts(friend, _top, cardSelection);
@@ -227,7 +229,7 @@ public class GuiMeneger
         Console.WriteLine("Koniec");
     }
 
-    public async Task Refresh(User kUser)
+    public async Task Refresh()
     {
         if (cardSelection == 0)
         {
@@ -263,7 +265,7 @@ public class GuiMeneger
         return SpecialKey.Wrong;
     }
 
-    public bool CheckForSpecialKeys(string msg, CancellationTokenSource endProgram, User kUser)
+    public bool CheckForSpecialKeys(string msg, CancellationTokenSource endProgram)
     {
         _guis[0].Output.Clear();
         switch (FindSpecialKey(msg))
@@ -296,14 +298,14 @@ public class GuiMeneger
                 kUser.SaveConotactToJsonOnExit(kontakt);
                 return true;
             case SpecialKey.Refresh:
-                Refresh(kUser);
+                Refresh();
                 break;
         }
 
         return false;
     }
     
-    public void GetUserInput(CancellationToken _endProgram, CancellationTokenSource endProgram, User kUser)
+    public void GetUserInput(CancellationToken _endProgram, CancellationTokenSource endProgram)
     {
         while (true)
         {
@@ -337,7 +339,7 @@ public class GuiMeneger
                 }
 
             Console.CursorLeft = 0;
-            if (!CheckForSpecialKeys(msg, endProgram, kUser))
+            if (!CheckForSpecialKeys(msg, endProgram))
             {
                 if (cardSelection != 0)
                 {
