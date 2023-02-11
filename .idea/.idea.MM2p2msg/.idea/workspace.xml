@@ -4,10 +4,9 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="koniec!!!">
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="Dodanie automatycznego zapisywania na stałe znajomych a nie tak jak było że tylko na exit">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/GuiMeneger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MM2p2msg/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +37,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/GuiMeneger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/GuiMeneger.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -105,7 +105,7 @@
       <workItem from="1675684309117" duration="669000" />
       <workItem from="1675776114210" duration="16147000" />
       <workItem from="1675932785438" duration="2879000" />
-      <workItem from="1675971545304" duration="10743000" />
+      <workItem from="1675971545304" duration="11335000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1674567093708</created>
@@ -373,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676073895990</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Dodanie automatycznego zapisywania na stałe znajomych a nie tak jak było że tylko na exit">
+      <created>1676075136155</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1676075136155</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +390,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="d" />
     <MESSAGE value="update dla matiego" />
     <MESSAGE value="aa" />
     <MESSAGE value="poprawiona aktualizacja stanu kontatków" />
@@ -408,7 +414,8 @@
     <MESSAGE value="Końcowa wersja 08.02.2023" />
     <MESSAGE value="nowa wersja z dobrym iDispose" />
     <MESSAGE value="koniec!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="koniec!!!" />
+    <MESSAGE value="Dodanie automatycznego zapisywania na stałe znajomych a nie tak jak było że tylko na exit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodanie automatycznego zapisywania na stałe znajomych a nie tak jak było że tylko na exit" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

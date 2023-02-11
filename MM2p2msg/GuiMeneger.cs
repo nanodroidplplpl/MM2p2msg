@@ -195,7 +195,7 @@ public class GuiMeneger
                 Console.Clear();
                 _guis[0].Output.Clear();
                 List<Contacts> friends = (List<Contacts>)MonitorServerGui.GetMonitoredVar();
-                kUser.SaveConotactToJsonOnExit(friends);
+                //kUser.SaveConotactToJsonOnExit(friends);
                 foreach (var friend in friends)
                 {
                     _guis[0].PrintContacts(friend, _top, cardSelection);
@@ -236,6 +236,7 @@ public class GuiMeneger
             EnableInput.Reset();
             Console.Clear();
             List<Contacts>? friends = kUser.GetContactsFromJson();
+            kUser.SaveConotactToJsonOnExit(friends);
             if (friends.Count != 0)
             {
                 friends = await kUser.TryFriendlyContacts(
