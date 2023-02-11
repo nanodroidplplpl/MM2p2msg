@@ -77,11 +77,11 @@ public class GuiMeneger
         EnableInput.Set();
     }
 
-    public bool CheckIpClones(List<Contacts> con, string ip)
+    public bool CheckIpClones(List<Contacts> con, string ip, int port)
     {
         foreach (var c in con)
         {
-            if (c.Ip == ip)
+            if (c.Ip == ip && c.Port != port)
             {
                 return true;
             }
@@ -108,6 +108,8 @@ public class GuiMeneger
                     }
                     iter++;
                 }
+
+                cardSelection = 0;
                 con.RemoveAt(jter);
                 MonitorServerGui.SetMonitoredVar(con);
                 kUser.SaveConotactToJsonOnExit(con);
@@ -148,7 +150,7 @@ public class GuiMeneger
         string? friendIp = match.Groups[2].Value;
         int port = int.Parse(match.Groups[3].Value);
         Match s = Regex.Match(friendIp,@"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$");
-        if (!CheckIpClones(con, friendIp) && s.Success)
+        if (!CheckIpClones(con, friendIp, port) && s.Success)
         {
             Contacts c = new Contacts(FriendNick, friendIp, port, false, 660, null, null);
             c.C = new Client(c, usrName);
@@ -168,7 +170,7 @@ public class GuiMeneger
 
     public void DeleteConf()
     {
-        if (cardSelection != 0)
+        if (cardSelection != 0 && _top.Count > cardSelection)
         {
             _top.RemoveAt(cardSelection);
             cardSelection--;
@@ -317,7 +319,7 @@ public class GuiMeneger
         {
             if (_endProgram.IsCancellationRequested)
             {
-                Console.WriteLine("Koniec Watku menegeraGui");
+                //Console.WriteLine("Koniec Watku menegeraGui");
                 return;
             }
             EnableInput.WaitOne();
