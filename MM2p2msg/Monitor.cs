@@ -19,4 +19,22 @@ public abstract class Monitor<T> : IDisposable
     {
         DataAcces.Dispose();
     }
+
+    protected bool _disposed = false;
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed)
+            return;
+        
+        if (disposing)
+            DataAcces.Dispose();
+
+        _disposed = true;
+    }
+
+    ~Monitor()
+    {
+        Dispose(false);
+    }
 }
