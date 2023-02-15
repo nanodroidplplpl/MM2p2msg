@@ -13,5 +13,10 @@ public abstract class Monitor<T> : IDisposable
     
     public abstract object GetMonitoredVar();
     public abstract object SetMonitoredVar(T changeValue);
-    public abstract void Dispose();
+    //public abstract void Dispose();
+
+    public void Dispose()
+    {
+        DataAcces.Dispose();
+    }
 }

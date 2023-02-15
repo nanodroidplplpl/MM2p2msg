@@ -1,6 +1,4 @@
-﻿using System.Net.Sockets;
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace MM2p2msg;
 
@@ -8,7 +6,7 @@ public class Contacts
 {
     public Contacts(string name, string ip, int port, bool active, int localPort, Client c, Server s)
     {
-        this.Name = name;
+        Name = name;
         Ip = ip;
         Port = port;
         Active = active;

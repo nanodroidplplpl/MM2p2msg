@@ -4,10 +4,14 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="">
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="Poprawienie działania atrybutów">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Client.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Contacts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Contacts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/IConnectable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/MM2p2msg.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/MM2p2msg.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/Monitor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Monitor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MM2p2msg/MonitorServerGui.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/MonitorServerGui.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +31,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/198a6261cebc324728dcc4c178edc5f2894123f711722c80e8557cbfd27651/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1af51483c9bf18871cce649b9f966dd7be686536f998c33bba3c5fc4adea4a0/Task.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2092594986cef463403359ef7a2b70c093702cde2d09da41faa694648726f8c/ThreadPoolWorkQueue.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/575c31ecc35a636b6f962cb71d53992552941a18982aae1c8e6c16305cc3761b/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5932d54a8a74e05ce8bd51a1ed4c68638352de69f283f12ae446bba9e32df3cb/TCPClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5bdc1f468ff811ead6ce2a42751fa64e712edcec0b8fad57be2ce014b85e5d/PortableThreadPool.WorkerThread.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/67cc3911dd203a288c1fa955bec74e281d938be3b988330c2aac7c6ce63340/DataMemberAttribute.cs" root0="SKIP_HIGHLIGHTING" />
@@ -38,6 +43,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c1da7b6c7c71a954fe3eb2531c6476711b3e6d93a8d76795386d326bb9dbc/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -107,7 +113,7 @@
       <workItem from="1675932785438" duration="2879000" />
       <workItem from="1675971545304" duration="16223000" />
       <workItem from="1676108361718" duration="1724000" />
-      <workItem from="1676476003817" duration="2478000" />
+      <workItem from="1676476003817" duration="7386000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1674567093708</created>
@@ -431,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676080483440</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Poprawienie działania atrybutów">
+      <created>1676481615873</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1676481615873</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +454,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="nie da się teraz usunąć karty menu" />
     <MESSAGE value="Finall for 1.02.2023" />
     <MESSAGE value="Finally version for 01.02.2023r" />
     <MESSAGE value="ddd" />
@@ -466,7 +478,8 @@
     <MESSAGE value="dobra wersja" />
     <MESSAGE value="asdfas" />
     <MESSAGE value="sdfa" />
-    <option name="LAST_COMMIT_MESSAGE" value="sdfa" />
+    <MESSAGE value="Poprawienie działania atrybutów" />
+    <option name="LAST_COMMIT_MESSAGE" value="Poprawienie działania atrybutów" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace MM2p2msg;
 
-public class Server : IConnectable
+public class Server
 {
     public int Port { get; set; }
     public string Host { get; set; }
@@ -81,15 +81,18 @@ public class Server : IConnectable
         List<Task> tasks = new List<Task>();
         while (!endProgram.IsCancellationRequested)
         {
-            //https://stackoverflow.com/questions/365370/proper-way-to-stop-tcplistener
-            if (!listener.Pending())
-            {
-                Thread.Sleep(100);
-                continue;
-            }
             //var client = listener.AcceptTcpClient();
-            var client = listener.AcceptTcpClient();
-            var task = Task.Factory.StartNew(() =>
+            //var client = await listener.AcceptTcpClientAsync(endProgram);
+            using var client = await listener.AcceptTcpClientAsync(endProgram)
+                .AsTask()
+                .ContinueWith(task => task.IsCanceled ? null : task.Result);
+
+            if (client is null)
+            {
+                break;
+            }
+            
+            var task = Task.Factory.StartNew(async () =>
             {
                 //var stream = client.GetStream();
                 using (var stream = client.GetStream())
@@ -100,15 +103,13 @@ public class Server : IConnectable
                     int bytesRead;
                     while (!endProgram.IsCancellationRequested)
                     {
-                        if (!stream.DataAvailable)
+                        if ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, endProgram)) != 0)
                         {
-                            Thread.Sleep(100);
-                            continue;
+                            Debug.Write(buffer);
+                            var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            Debug.WriteLine("Otrzymano ip: " + message);
+                            if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message, int.Parse(portCl));
                         }
-                        bytesRead = stream.Read(buffer, 0, buffer.Length);
-                        var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                        Debug.WriteLine("Otrzymano ip: " + message);
-                        if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message, int.Parse(portCl));
                     }
                 }
                 client.Dispose();

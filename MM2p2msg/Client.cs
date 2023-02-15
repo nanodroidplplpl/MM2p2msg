@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MM2p2msg;
 
-public class Client : IConnectable
+public class Client
 {
     private Contacts Contact { get; set; }
     public Socket Socket { get; set; } = null!;

@@ -11,6 +11,7 @@
       <Compile Remove="Connection.cs" />
       <Compile Remove="ConnectionClientUI.cs" />
       <Compile Remove="ControlUI.cs" />
+      <Compile Remove="IConnectable.cs" />
     </ItemGroup>
 
     <ItemGroup>
