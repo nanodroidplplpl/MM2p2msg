@@ -89,7 +89,7 @@ public class Server
 
             if (client is null)
             {
-                break;
+                continue;
             }
             
             var task = Task.Factory.StartNew(async () =>
