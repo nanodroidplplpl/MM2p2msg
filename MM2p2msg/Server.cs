@@ -83,16 +83,11 @@ public class Server
         {
             //var client = listener.AcceptTcpClient();
             //var client = await listener.AcceptTcpClientAsync(endProgram);
-            // using var client = await listener.AcceptTcpClientAsync(endProgram)
-            //     .AsTask()
-            //     .ContinueWith(task => task.IsCanceled ? null : task.Result);
-            //
-            // if (client is null)
-            // {
-            //     continue;
-            // }
-            TcpClient client;
-            if ((client = await listener.AcceptTcpClientAsync(endProgram)) != null)
+            var client = await listener.AcceptTcpClientAsync(endProgram)
+                .AsTask()
+                .ContinueWith(task => task.IsCanceled ? null : task.Result);
+
+            if (client is not null)
             {
                 var task = Task.Factory.StartNew(async () =>
                 {
