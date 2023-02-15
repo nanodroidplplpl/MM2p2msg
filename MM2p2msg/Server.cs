@@ -107,6 +107,7 @@ public class Server
                                 var message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                                 Debug.WriteLine("Otrzymano ip: " + message);
                                 if (clientIpAddress != null) MakeSomethingWithMsg(clientIpAddress, message, int.Parse(portCl));
+                                break;
                             }
                         }
                     }

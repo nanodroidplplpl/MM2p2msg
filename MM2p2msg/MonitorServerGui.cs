@@ -32,24 +32,24 @@ public class MonitorServerGui : Monitor<List<Contacts>>
         return true;
     }
 
-    public new void Dispose()
-    {
-        DataAcces.Dispose();
-        base.Dispose();
-    }
-
-    // protected override void Dispose(bool disposing)
+    // public new void Dispose()
     // {
-    //     if (_disposed)
-    //         return;
-    //
-    //     if (disposing)
-    //     {
-    //         DataAcces.Dispose();
-    //     }
-    //
-    //     base.Dispose(disposing);
-    //
-    //     _disposed = true;
+    //     DataAcces.Dispose();
+    //     base.Dispose();
     // }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (_disposed)
+            return;
+
+        if (disposing)
+        {
+            DataAcces.Dispose();
+        }
+
+        base.Dispose(disposing);
+
+        _disposed = true;
+    }
 }
