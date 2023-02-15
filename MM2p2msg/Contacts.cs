@@ -1,9 +1,9 @@
 ﻿using System.Net.Sockets;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MM2p2msg;
 
-[DataContract]
 public class Contacts
 {
     public Contacts(string name, string ip, int port, bool active, int localPort, Client c, Server s)
@@ -18,20 +18,24 @@ public class Contacts
         Conf = new List<string>();
     }
 
-    [DataMember]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
-    [DataMember]
+    [JsonPropertyName("ip")]
     public string Ip { get; set; }
-    [DataMember]
+    [JsonPropertyName("port")]
     public int Port { get; set; }
-    
+    [JsonIgnore]
     public int LocalPort { get; set; }
     
+    [JsonIgnore]
     public bool Active { get; set; }
     
+    [JsonIgnore]
     public Client C { get; set; }
     
+    [JsonIgnore]
     public Server S { get; set; }
-
+    
+    [JsonIgnore]
     public List<string> Conf;
 }

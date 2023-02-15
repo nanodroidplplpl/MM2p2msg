@@ -44,9 +44,10 @@ public class Client : IConnectable
                 byte[] buffer = Encoding.ASCII.GetBytes(usrName+":AscConnection:"+myPort);
                 Debug.WriteLine("Wysylam probe polaczenia do Mati");
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-                args.RemoteEndPoint = endPoint;
-                args.SetBuffer(buffer, 0, buffer.Length);
-                socket.SendAsync(args);
+                //args.RemoteEndPoint = endPoint;
+                //args.SetBuffer(buffer, 0, buffer.Length);
+                //socket.SendAsync(args);
+                socket.Send(buffer);
             }
         }
         catch (Exception)

@@ -77,7 +77,7 @@ public class Server : IConnectable
 
         var listener = new TcpListener(localAddress, UserPort);
         listener.Start();
-        listener.Start();
+        //listener.Start();
         List<Task> tasks = new List<Task>();
         while (!endProgram.IsCancellationRequested)
         {
