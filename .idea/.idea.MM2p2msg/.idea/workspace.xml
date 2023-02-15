@@ -4,8 +4,7 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="a">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="asdf">
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +40,7 @@
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Monitor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
@@ -114,14 +114,7 @@
       <workItem from="1675932785438" duration="2879000" />
       <workItem from="1675971545304" duration="16223000" />
       <workItem from="1676108361718" duration="1724000" />
-      <workItem from="1676476003817" duration="15021000" />
-    </task>
-    <task id="LOCAL-00005" summary="działa, chyba">
-      <created>1675111219634</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1675111219634</updated>
+      <workItem from="1676476003817" duration="15848000" />
     </task>
     <task id="LOCAL-00006" summary="dodanie lepszej karty">
       <created>1675118929684</created>
@@ -459,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676490116876</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="asdf">
+      <created>1676494579029</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1676494579029</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +469,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="dodanie wyświetlania nr portów znajomych" />
     <MESSAGE value="Dodanie opcji zmiany nr Portu" />
     <MESSAGE value="poprawiony port" />
     <MESSAGE value="Poprawiona komunikacja" />
@@ -494,7 +493,8 @@
     <MESSAGE value="dzialajacy server" />
     <MESSAGE value="Finalny projekt na 15.02.2023" />
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="asdf" />
+    <option name="LAST_COMMIT_MESSAGE" value="asdf" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
