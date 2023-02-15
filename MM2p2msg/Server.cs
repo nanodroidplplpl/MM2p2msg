@@ -96,7 +96,7 @@ public class Server
                     {
                         var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
                         string portCl = ((IPEndPoint)client.Client.RemoteEndPoint)?.Port.ToString();
-                        var buffer = new byte[1024];
+                        var buffer = new byte[1024*8];
                         int bytesRead;
                         while (!endProgram.IsCancellationRequested)
                         {
@@ -113,7 +113,6 @@ public class Server
                 }, endProgram);
                 tasks.Add(task);
             }
-            //Debug.WriteLine("zasowa!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
         //listener.Stop();
         //Console.WriteLine("Kończe server");
