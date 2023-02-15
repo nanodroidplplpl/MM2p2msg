@@ -4,7 +4,7 @@
     <projectFile>MM2p2msg/MM2p2msg.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="d">
+    <list default="true" id="d8a4efac-bbb1-4190-99c9-3c392c61b132" name="Changes" comment="Finalny projekt na 15.02.2023">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MM2p2msg/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MM2p2msg/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MM2p2msg/Server.cs" afterDir="false" />
     </list>
@@ -40,6 +40,8 @@
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MM2p2msg/ControlUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Monitor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/mkawk/RiderProjects/MM2p2msg/MM2p2msg/Server.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -110,21 +112,7 @@
       <workItem from="1675932785438" duration="2879000" />
       <workItem from="1675971545304" duration="16223000" />
       <workItem from="1676108361718" duration="1724000" />
-      <workItem from="1676476003817" duration="8939000" />
-    </task>
-    <task id="LOCAL-00002" summary="Added support for a JSON file that saves and reads the contact list.">
-      <created>1674644673323</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1674644673323</updated>
-    </task>
-    <task id="LOCAL-00003" summary="UI">
-      <created>1674688442697</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1674688442697</updated>
+      <workItem from="1676476003817" duration="11115000" />
     </task>
     <task id="LOCAL-00004" summary="będzie zmiana">
       <created>1675007996307</created>
@@ -455,7 +443,21 @@
       <option name="project" value="LOCAL" />
       <updated>1676486992532</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="dzialajacy server">
+      <created>1676487907841</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1676487907842</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Finalny projekt na 15.02.2023">
+      <created>1676489376398</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1676489376398</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,8 +467,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="do WYsłanie do Profesora" />
-    <MESSAGE value="do drukuj" />
     <MESSAGE value="Dodanie opcji zmienienia nr portu u znajomego" />
     <MESSAGE value="dodanie wyświetlania nr portów znajomych" />
     <MESSAGE value="Dodanie opcji zmiany nr Portu" />
@@ -490,7 +490,9 @@
     <MESSAGE value="Poprawiony wątek servera" />
     <MESSAGE value="dsaf" />
     <MESSAGE value="d" />
-    <option name="LAST_COMMIT_MESSAGE" value="d" />
+    <MESSAGE value="dzialajacy server" />
+    <MESSAGE value="Finalny projekt na 15.02.2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalny projekt na 15.02.2023" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

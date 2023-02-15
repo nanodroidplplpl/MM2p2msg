@@ -113,6 +113,7 @@ public class Server
                 }, endProgram);
                 tasks.Add(task);
             }
+            //Debug.WriteLine("zasowa!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
         //listener.Stop();
         //Console.WriteLine("Kończe server");
