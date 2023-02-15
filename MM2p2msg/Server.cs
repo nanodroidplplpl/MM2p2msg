@@ -33,6 +33,7 @@ public class Server
 
     public void MakeSomethingWithMsg(IPAddress address, string msg, int port)
     {
+        Debug.WriteLine("make something!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         string Saddress = address.ToString();
         Match match = Regex.Match(msg, @":AscConnection");
         List<Contacts> monitoredVar = (List<Contacts>)ServerGuiConnect.GetMonitoredVar();
@@ -96,7 +97,7 @@ public class Server
                     {
                         var clientIpAddress = ((IPEndPoint)client.Client.RemoteEndPoint)?.Address;
                         string portCl = ((IPEndPoint)client.Client.RemoteEndPoint)?.Port.ToString();
-                        var buffer = new byte[1024*8];
+                        var buffer = new byte[1024];
                         int bytesRead;
                         while (!endProgram.IsCancellationRequested)
                         {
